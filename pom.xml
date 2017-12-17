@@ -10,6 +10,7 @@
 
   <modules>
     <module>InventoryManagementCore</module>
+    <module>InventoryManagementWeb</module>
   </modules>
 
   <properties>
