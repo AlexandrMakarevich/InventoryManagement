@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../static/css/report.css" th:href="@{/css/report.css}" rel="stylesheet" />
+    <title>Report page</title>
+</head>
+<body>
+<table class="table">
+    <tr class="title">
+        <th>PRODUCT_ID</th>
+        <th>PRODUCT_NAME</th>
+        <th>PRODUCT_PRICE</th>
+        <th>QUANTITY</th>
+        <th>DATE</th>
+    </tr>
+        <tr th:each="inventoryState : ${inventoryStates}" class="body">
+           <td th:text="${inventoryState.inventoryStatePK.product.id}"/>
+           <td th:text="${inventoryState.inventoryStatePK.product.productName}"/>
+           <td th:text="${inventoryState.inventoryStatePK.product.price}"/>
+           <td th:text="${inventoryState.quantity}"/>
+           <td th:text="${inventoryState.inventoryStatePK.stateDate}"/>
+        </tr>
+</table>
+</body>
+</html>

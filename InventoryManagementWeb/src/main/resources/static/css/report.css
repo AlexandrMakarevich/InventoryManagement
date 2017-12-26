@@ -1,0 +1,18 @@
+body {
+    background-color: grey;
+}
+
+.table {
+    border: 1px solid black;
+    width: 100%;
+}
+
+.title{
+    background-color: deepskyblue;
+    font-style: oblique;
+}
+
+.body{
+    text-align: center;
+    background-color: chartreuse;
+}

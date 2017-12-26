@@ -1,0 +1,18 @@
+body {
+    background-color: grey;
+}
+
+.button {
+    background-color: #2eb349;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 7px;
+    border-radius: 4px;
+    position:absolute;
+}
+
+.button:hover{
+    color: blue;
+}

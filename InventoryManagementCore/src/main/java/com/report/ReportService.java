@@ -5,7 +5,6 @@ import com.dao.InventoryStateDao;
 import com.entity.InventoryState;
 import com.itextpdf.text.DocumentException;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;

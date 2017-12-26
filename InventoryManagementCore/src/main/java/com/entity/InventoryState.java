@@ -50,4 +50,12 @@ public class InventoryState {
     public int hashCode() {
         return Objects.hashCode(inventoryStatePK);
     }
+
+    @Override
+    public String toString() {
+        return "InventoryState{" +
+                "inventoryStatePK=" + inventoryStatePK +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

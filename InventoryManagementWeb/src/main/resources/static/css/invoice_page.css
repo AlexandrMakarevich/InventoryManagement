@@ -1,0 +1,52 @@
+body{
+    background-color: grey;
+}
+
+.table{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.table_head{
+    background-color: deepskyblue;
+    text-transform: uppercase;
+}
+
+.table_body{
+    background-color: chartreuse;
+}
+
+.choose_box{
+    border-radius: 4px;
+    border:2px solid #55abf2;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: #2eb349;
+    color: white;
+    padding: 10px 7px;
+}
+
+.input_quantity{
+    width: 200px;
+    height: 15px;
+    padding: 10px 7px;
+    border-radius: 4px;
+    border:2px solid #55abf2;
+    text-transform: uppercase;
+}
+
+.add-row{
+    padding: 10px 7px;
+    border-radius: 4px;
+    border:2px solid #55abf2;
+    text-transform: uppercase;
+}
+
+.delete_button{
+    padding: 10px 7px;
+    border-radius: 4px;
+    border:2px solid #55abf2;
+    text-transform: uppercase;
+    background-color: #2eb349;
+    color: white;
+}
