@@ -1,44 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" >
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>InvoicePage</title>
 
     <link rel="stylesheet" th:href="@{/css/invoice_page.css}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.min.css"/>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/invoice.js}"></script>
 
 </head>
 
 <body onload="init()">
 
-<div>
-    <select id="selectedProduct" class="choose_box">
-        <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.productName}"></option>
-    </select>
-    <input type="text" id="quantity" class="input_quantity" placeholder="Quantity"/>
-    <input type="button" class="add-row" value="Add Row"/>
+<form th:action="@{/createInvoice}" th:object="${createInvoiceRequest}" method="post">
+    <div>
+        <select id="selectedProduct" class="choose_box">
+            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.productName}"></option>
+        </select>
+        <input type="text" id="quantity" class="input_quantity"/>
+        <input type="button" class="add-row" value="Add Row"/>
     </div>
 
-<div>
-<form>
-    <select id="selectedInvoice" class="choose_box">
-        <!-- must be populated from module -->
-        <option value="In">Invoice In</option>
-        <option value="Out">Invoice Out</option>
-    </select>
-    <table border="1px" class="table">
-        <tr class="table_head">
-            <th></th>
-            <th>product</th>
-            <th>quantity</th>
-        </tr>
-    </table>
- </form>
-</div>
+    <div>
+        invoiceType :
+        <select id="selectedInvoice" class="choose_box" th:field="*{invoiceType}">
+            <option th:each="invoiceType : ${invoiceTypes}" th:value="${invoiceType}" th:text="${invoiceType}">
+            </option>
+        </select>
+        <table border="1px" class="table">
+            <tr class="table_head">
+                <th></th>
+                <th>product</th>
+                <th>quantity</th>
+            </tr>
+        </table>
+    </div>
+    <input type="submit" value="CreateInvoice"/>
+</form>
 
 </body>
 </html>
