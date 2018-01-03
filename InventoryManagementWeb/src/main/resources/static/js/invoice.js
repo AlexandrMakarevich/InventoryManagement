@@ -1,3 +1,4 @@
+
 function init() {
     $("#selectedProduct").chosen();
     $(".add-row").click(function () {
