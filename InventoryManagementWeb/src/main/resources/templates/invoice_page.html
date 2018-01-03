@@ -9,38 +9,22 @@
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#selectedProduct").chosen();
-            $(".add-row").click(function () {
-                var product = $("#selectedProduct").val();
-                var quantity = $("#quantity").val();
-                var markup = "<tr>"
-                        + "<td ><input type='button' value='Delete' onclick='$(this).parent().parent().remove();'/></td>"
-                        + "<td>" + product + "</td>"
-                        + "<td>" + quantity + "</td>"
-                        + "</tr>";
-                $("table tbody").append(markup);
-            });
-
-        });
-    </script>
+    <script type="text/javascript" th:src="@{/css/js/invoice.js}"></script>
 
 </head>
 
-<body>
+<body onload="init()">
 
 <div>
     <select id="selectedProduct" class="choose_box">
-        <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.productName}"></option>
+        <option th:each="product : ${products}" th:value="${product.productName}" th:text="${product.productName}"></option>
     </select>
     <input type="text" id="quantity" class="input_quantity" placeholder="Quantity"/>
     <input type="button" class="add-row" value="Add Row"/>
     </div>
 
 <div>
-<form>
+<form action="#" th:action="@{/invoice_page}" th:object="${data}" method="post">
     <select id="selectedInvoice" class="choose_box">
         <!-- must be populated from module -->
         <option value="In">Invoice In</option>
@@ -49,10 +33,11 @@
     <table border="1px" class="table">
         <tr class="table_head">
             <th></th>
-            <th>product</th>
-            <th>quantity</th>
+            <th th:field="*{productId}">product</th>
+            <th th:field="*{productQuantity}">quantity</th>
         </tr>
     </table>
+    <input type="submit" value="Create invoice"/>
  </form>
 </div>
 

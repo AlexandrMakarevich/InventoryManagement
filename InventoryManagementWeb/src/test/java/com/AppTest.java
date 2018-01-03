@@ -29,7 +29,7 @@ public class AppTest
     }
 
     /**
-     * Rigourous Test :-)
+     * Rigourous com.Test1 :-)
      */
     public void testApp()
     {
