@@ -31,5 +31,6 @@ public class ReportProcessCSV implements ReportProcess {
             pwt.format(report.toString());
         }
         pwt.flush();
+        pwt.close();
     }
 }

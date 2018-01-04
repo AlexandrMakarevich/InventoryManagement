@@ -9,9 +9,6 @@
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
-    <script type="text/javascript" th:src="@{/css/js/invoice.js}"></script>
-
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/invoice.js}"></script>
@@ -31,7 +28,7 @@
     </div>
 
     <div>
-        invoiceType :
+        Invoice Type :
         <select id="selectedInvoice" class="choose_box" th:field="*{invoiceType}">
             <option th:each="invoiceType : ${invoiceTypes}" th:value="${invoiceType}" th:text="${invoiceType}">
             </option>
@@ -46,7 +43,6 @@
     </div>
     <input type="submit" value="CreateInvoice"/>
 </form>
-
 
 </body>
 </html>

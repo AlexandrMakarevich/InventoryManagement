@@ -1,12 +1,13 @@
-package com.controller;
+package com.client;
 
+import com.constant.InvoiceType;
 import com.google.common.base.MoreObjects;
 
 import java.util.Map;
 
 public class CreateInvoiceRequest {
 
-    private String invoiceType;
+    private InvoiceType invoiceType;
 
     private Map<Integer, Integer> productQuantityMap;
 
@@ -18,12 +19,12 @@ public class CreateInvoiceRequest {
         this.productQuantityMap = productQuantityMap;
     }
 
-    public String getInvoiceType() {
-        return invoiceType;
+    public void setInvoiceType(InvoiceType invoiceType) {
+        this.invoiceType = invoiceType;
     }
 
-    public void setInvoiceType(String invoiceType) {
-        this.invoiceType = invoiceType;
+    public InvoiceType getInvoiceType() {
+        return invoiceType;
     }
 
     @Override
