@@ -5,28 +5,31 @@ import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 import com.google.common.collect.ImmutableMap;
-
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
+import static org.apache.commons.lang.CharEncoding.UTF_8;
 
 public class ReportProcessHTML {
 
+    private String fileName = "test.html";
+    private MustacheFactory mf;
+    private Mustache mustache;
+
+    public ReportProcessHTML() {
+        mf =  new DefaultMustacheFactory();
+        mustache = mf.compile("mustache.template");
+    }
 
     public File generateHTMLReport(List<InventoryState> inventoryStates) throws IOException {
-        loadProperty();
-        File htmlFile = new File(System.getProperty("urlHtmlFile"));
-        MustacheFactory mf = new DefaultMustacheFactory();
-        Mustache mustache = mf.compile("mustache.template");
+        File htmlFile = new File(fileName);
         BigDecimal totalPrice = countTotalPrice(inventoryStates);
         Map<String, Object> context = ImmutableMap.of("items", inventoryStates,
                 "price", totalPrice);
-        mustache.execute(new PrintWriter(htmlFile), context).flush();
+        mustache.execute(new PrintWriter(htmlFile, UTF_8), context).flush();
         return htmlFile;
     }
 
@@ -36,13 +39,5 @@ public class ReportProcessHTML {
             countPrice = countPrice.add(inventoryState.calculateItemCost());
         }
         return countPrice;
-    }
-
-    public void loadProperty() throws IOException{
-        Properties properties = System.getProperties();
-        InputStream inputStream = getClass().getResourceAsStream("/config-file.properties");
-        properties.load(inputStream);
-        System.setProperties(properties);
-        inputStream.close();
     }
 }
