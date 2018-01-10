@@ -12,6 +12,7 @@ import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
@@ -25,6 +26,7 @@ import java.util.Properties;
 @PropertySources({@PropertySource("classpath:autoPatch.properties"),
                    @PropertySource("classpath:db.properties")})
 @EnableTransactionManagement
+@EnableScheduling
 public class SpringConfig {
 
     @Autowired
