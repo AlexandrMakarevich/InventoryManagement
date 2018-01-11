@@ -1,18 +1,32 @@
 body{
-    background-color: grey;
+    background-image: url(../image/fon4.jpg);
+}
+
+.title{
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 50px;
+    color: #28d1e0;
 }
 
 .table{
     text-align: center;
     text-transform: uppercase;
+    margin-top: 30px;
 }
 
 .table_head{
-    background-color: deepskyblue;
+    background-color: #415557;
     text-transform: uppercase;
 }
 
 .table_body{
+    background-color: chartreuse;
+}
+
+.table td{
+    color: black;
     background-color: chartreuse;
 }
 
@@ -21,9 +35,20 @@ body{
     border:2px solid #55abf2;
     text-align: center;
     text-transform: uppercase;
-    background-color: #2eb349;
+    background-color: #415557;
     color: white;
-    padding: 10px 7px;
+    padding: 10px 27px;
+    margin-top: 30px;
+}
+
+.choose_box_product{
+    border-radius: 4px;
+    border:2px solid #55abf2;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: #415557;
+    padding: 10px 37px;
+    margin-top: 30px;
 }
 
 .input_quantity{
@@ -35,11 +60,16 @@ body{
     text-transform: uppercase;
 }
 
+.test{
+}
+
 .add-row{
-    padding: 10px 7px;
+    padding: 10px 20px;
     border-radius: 4px;
     border:2px solid #55abf2;
     text-transform: uppercase;
+    background-color: #415557;
+    color: #28d1e0;
 }
 
 .delete_button{
@@ -47,6 +77,24 @@ body{
     border-radius: 4px;
     border:2px solid #55abf2;
     text-transform: uppercase;
-    background-color: #2eb349;
-    color: white;
+    background-color: #415557;
+    color: #28d1e0;
+}
+
+.invoice_type{
+    color: #28d1e0;
+}
+
+.create_invoice_button{
+    padding: 10px 20px;
+    border-radius: 4px;
+    border:2px solid #55abf2;
+    text-transform: uppercase;
+    background-color: #415557;
+    color: #28d1e0;
+    margin-top: 20px;
+}
+
+.components{
+    margin-left: 200px;
 }

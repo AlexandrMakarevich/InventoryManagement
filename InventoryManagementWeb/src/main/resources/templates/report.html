@@ -2,19 +2,24 @@
 <html lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="../static/css/report.css" th:href="@{/css/report.css}" rel="stylesheet" />
+    <link href="../static/css/report.css" th:href="@{/css/report.css}" rel="stylesheet"/>
     <title>Report page</title>
 </head>
+
 <body>
+
+    <div class="title">
+        <h3>Actual inventory state on chosen date: </h3>
+    </div>
 <table class="table">
-    <tr class="title">
+    <tr class="table_title">
         <th>PRODUCT_ID</th>
         <th>PRODUCT_NAME</th>
         <th>PRODUCT_PRICE</th>
         <th>QUANTITY</th>
         <th>DATE</th>
     </tr>
-        <tr th:each="inventoryState : ${inventoryStates}" class="body">
+        <tr th:each="inventoryState : ${inventoryStates}" class="table_body">
            <td th:text="${inventoryState.inventoryStatePK.product.id}"/>
            <td th:text="${inventoryState.inventoryStatePK.product.productName}"/>
            <td th:text="${inventoryState.inventoryStatePK.product.price}"/>

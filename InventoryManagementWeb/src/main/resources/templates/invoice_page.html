@@ -18,16 +18,20 @@
 
 <body onload="init()">
 
-<form th:action="@{/createInvoice}" th:object="${createInvoiceRequest}" method="post">
+<div class="title">
+    <h1>Create your invoice!</h1>
+</div>
+
+<form th:action="@{/invoice_page}" th:object="${createInvoiceRequest}" method="post" class="components">
     <div>
-        <select id="selectedProduct" class="choose_box">
-            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.productName}"></option>
+        <select id="selectedProduct" class="choose_box_product">
+            <option class="test" th:each="product : ${products}" th:value="${product.id}" th:text="${product.productName}"></option>
         </select>
-        <input type="text" id="quantity" class="input_quantity"/>
+        <input placeholder="QUANTITY" type="text" id="quantity" class="input_quantity"/>
         <input type="button" class="add-row" value="Add Row"/>
     </div>
 
-    <div>
+    <div class="invoice_type">
         Invoice Type :
         <select id="selectedInvoice" class="choose_box" th:field="*{invoiceType}">
             <option th:each="invoiceType : ${invoiceTypes}" th:value="${invoiceType}" th:text="${invoiceType}">
@@ -41,7 +45,7 @@
             </tr>
         </table>
     </div>
-    <input type="submit" value="CreateInvoice"/>
+    <input class="create_invoice_button" type="submit" value="Create Invoice"/>
 </form>
 
 </body>

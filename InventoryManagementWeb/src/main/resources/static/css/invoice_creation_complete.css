@@ -1,0 +1,33 @@
+body{
+    font-family: Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+    background-image: url(../image/fon4.jpg);
+}
+
+.title{
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 80px;
+    color: #28d1e0;
+}
+
+.back_button{
+    background: #415557;
+    border-radius: 3px;
+    display: block;
+    width: 240px;
+    padding: 20px 0;
+    margin: 0 auto;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 50px;
+}
+
+.back_button a{
+    color: #28d1e0;
+}

@@ -28,7 +28,7 @@ public class InvoiceController {
     @Resource(name = "invoiceRequestBuilder")
     private InvoiceRequestBuilder invoiceRequestBuilder;
 
-    @GetMapping(value = "/createInvoice")
+    @GetMapping(value = "/invoice_page")
     public String initInvoice(Model model) {
         List<Product> productList = productDao.getAllProduct();
         model.addAttribute("products", productList);
@@ -37,13 +37,13 @@ public class InvoiceController {
         return "invoice_page";
     }
 
-    @PostMapping(value = "/createInvoice")
-    public Invoice createInvoice(@ModelAttribute CreateInvoiceRequest createInvoice) {
+    @PostMapping(value = "/invoice_page")
+    public String createInvoice(@ModelAttribute CreateInvoiceRequest createInvoice) {
         if (createInvoice == null || createInvoice.getProductQuantityMap().isEmpty()) {
             throw new IllegalStateException("CreateInvoiceRequest must be initialize");
         }
         Invoice invoice = invoiceRequestBuilder.buildInvoice(createInvoice);
         invoiceDao.saveInvoice(invoice);
-        return invoice;
+        return "invoice_creation_complete";
     }
 }

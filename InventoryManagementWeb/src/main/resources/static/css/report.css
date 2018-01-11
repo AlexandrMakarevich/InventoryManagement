@@ -1,18 +1,27 @@
 body {
-    background-color: grey;
+    background-image: url(../image/fon4.jpg);
+}
+
+.title{
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 50px;
+    color: #28d1e0;
 }
 
 .table {
     border: 1px solid black;
     width: 100%;
+    margin-top: 50px;
 }
 
-.title{
+.table_title{
     background-color: deepskyblue;
     font-style: oblique;
 }
 
-.body{
-    text-align: center;
+.table_body{
     background-color: chartreuse;
+    text-align: center;
 }
