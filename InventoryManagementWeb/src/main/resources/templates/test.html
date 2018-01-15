@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>Title</title>
+    <script type="text/javascript">
+        function download(file1, name, type) {
+            var a = document.getElementById("a");
+            var file = new Blob([file1], {type: type});
+            a.href = URL.createObjectURL(file);
+            a.download = name;
+        }
+    </script>
+</head>
+
+<body>
+
+    <!--<form th:action="@{/test}" th:object="${file}" method="post">-->
+
+    <!--</form>-->
+    <!--<a href="" id="a">click here to download your file</a>-->
+    <!--<button onclick="download('file text', 'InvoiceReport.txt', 'text/plain')">Create file</button>-->
+
+</body>
+</html>

@@ -10,6 +10,52 @@ body {
     color: #28d1e0;
 }
 
+.show_button{
+    background: #415557;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    color: #28d1e0;
+    border:2px solid #55abf2;
+    border-radius: 4px;
+    padding: 11px 30px;
+}
+
+.save_button{
+    margin-top: 30px;
+    margin-left: 30px;
+    background: #415557;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    color: #28d1e0;
+    border:2px solid #55abf2;
+    border-radius: 4px;
+    padding: 11px 30px;
+}
+#date {
+    margin-top: 30px;
+    margin-left: 30px;
+    color: #28d1e0;
+    border:2px solid #55abf2;
+    border-radius: 4px;
+    padding: 10px 27px;
+    background: #415557;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.date_label{
+    color: #28d1e0;
+    padding: 10px 27px;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-left: 30px;
+}
+
 .table {
     border: 1px solid black;
     width: 100%;
@@ -24,4 +70,28 @@ body {
 .table_body{
     background-color: chartreuse;
     text-align: center;
+}
+
+.table_body_total{
+    background-color: chartreuse;
+    border-radius: 4px;
+    float: right;
+    margin-right: 5px;
+    padding: 10px 27px;
+}
+
+.return_button{
+    margin-top: 20px;
+    margin-left: 30px;
+    background: #415557;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    border:2px solid #55abf2;
+    border-radius: 4px;
+    padding: 11px 30px;
+    width: 200px;
+}
+.return_button a{
+    color: #28d1e0;
 }

@@ -9,23 +9,46 @@
 <body>
 
     <div class="title">
-        <h3>Actual inventory state on chosen date: </h3>
+        <h3>Check inventory state: </h3>
     </div>
-<table class="table">
-    <tr class="table_title">
-        <th>PRODUCT_ID</th>
-        <th>PRODUCT_NAME</th>
-        <th>PRODUCT_PRICE</th>
-        <th>QUANTITY</th>
-        <th>DATE</th>
-    </tr>
-        <tr th:each="inventoryState : ${inventoryStates}" class="table_body">
-           <td th:text="${inventoryState.inventoryStatePK.product.id}"/>
-           <td th:text="${inventoryState.inventoryStatePK.product.productName}"/>
-           <td th:text="${inventoryState.inventoryStatePK.product.price}"/>
-           <td th:text="${inventoryState.quantity}"/>
-           <td th:text="${inventoryState.inventoryStatePK.stateDate}"/>
-        </tr>
-</table>
+
+    <form th:action="@{/report}"  method="post">
+    <div>
+        <label for="date" class="date_label">Choose date:</label>
+        <input type="datetime-local" id="date" name="reportDate"/>
+        <input class="show_button" type="button"
+               onclick="window.location.assign('/report?reportDate='+ document.getElementById('date').value);" value="Show report"/>
+        <input class="save_button" type="button"
+               onclick="window.location.assign('/save_report?reportDate='+ document.getElementById('date').value);" value="Save report"/>
+    </div>
+    </form>
+
+    <div>
+        <table class="table">
+            <tr class="table_title">
+                <th>PRODUCT_ID</th>
+                <th>PRODUCT_NAME</th>
+                <th>PRODUCT_PRICE</th>
+                <th>QUANTITY</th>
+                <th>DATE</th>
+            </tr>
+            <tr th:each="inventoryState : ${inventoryStates}" class="table_body">
+                <td th:text="${inventoryState.inventoryStatePK.product.id}"/>
+                <td th:text="${inventoryState.inventoryStatePK.product.productName}"/>
+                <td th:text="${inventoryState.inventoryStatePK.product.price}"/>
+                <td th:text="${inventoryState.quantity}"/>
+                <td th:text="${inventoryState.inventoryStatePK.stateDate}"/>
+            </tr>
+        </table>
+        <div>
+            <h4 th:text="'Total Price :' + ${totalPrice}" class="table_body_total"/>
+        </div>
+    </div>
+
+    <div class="return_button">
+        <a href="/welcome_page">Back on main page</a>
+    </div>
+
 </body>
+
 </html>
