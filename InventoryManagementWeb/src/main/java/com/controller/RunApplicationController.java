@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller("runApplicationController")
 public class RunApplicationController {
     
-    @RequestMapping(value = "/welcome_page")
+    @RequestMapping(value = "/")
     public String run() {
         return"welcome_page";
     }

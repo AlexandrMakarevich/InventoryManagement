@@ -19,7 +19,7 @@
 <body onload="init()">
 
 <div class="title">
-    <h1>Create your invoice!</h1>
+    <h1 th:text="#{invoice_page.message}"></h1>
 </div>
 
 <form th:action="@{/invoice_page}" th:object="${createInvoiceRequest}" method="post" class="components">
@@ -27,12 +27,12 @@
         <select id="selectedProduct" class="choose_box_product">
             <option class="test" th:each="product : ${products}" th:value="${product.id}" th:text="${product.productName}"></option>
         </select>
-        <input placeholder="QUANTITY" type="text" id="quantity" class="input_quantity"/>
-        <input type="button" class="add-row" value="Add Row"/>
+        <input th:placeholder="#{invoice_page.quantity}" type="text" id="quantity" class="input_quantity"/>
+        <input type="button" class="add-row" th:value="#{invoice_page.add_row_button}"/>
     </div>
 
     <div class="invoice_type">
-        Invoice Type :
+        <label for="selectedInvoice" th:text="#{invoice_page.invoice_type}"/>
         <select id="selectedInvoice" class="choose_box" th:field="*{invoiceType}">
             <option th:each="invoiceType : ${invoiceTypes}" th:value="${invoiceType}" th:text="${invoiceType}">
             </option>
@@ -40,12 +40,12 @@
         <table border="1px" class="table">
             <tr class="table_head">
                 <th></th>
-                <th>product</th>
-                <th>quantity</th>
+                <th th:text="#{invoice_page.table_product}"></th>
+                <th th:text="#{invoice_page.table_quantity}"></th>
             </tr>
         </table>
     </div>
-    <input class="create_invoice_button" type="submit" value="Create Invoice"/>
+    <input class="create_invoice_button" type="submit" th:value="#{invoice_page.create_button}"/>
 </form>
 
 </body>

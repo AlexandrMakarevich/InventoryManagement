@@ -1,27 +1,52 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Welcome page</title>
     <link href="../static/css/welcome_page.css" th:href="@{/css/welcome_page.css}" rel="stylesheet"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#locales").change(function () {
+                var selectedOption = $('#locales').val();
+                if (selectedOption != ''){
+                    window.location.replace('?lang=' + selectedOption);
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
+
+<ul id="navbar">
+    <li>
+        <span th:text="#{language.change}"></span>:
+        <select id="locales">
+            <option value=""></option>
+            <option value="en" th:text="#{lang.eng}"></option>
+            <option value="ru" th:text="#{lang.ru}"></option>
+        </select>
+    </li>
+</ul>
+
 <div class="title">
-    <h1>Welcome in Inventory Management Application</h1>
+    <h1 th:text="#{welcome_page.message}"></h1>
 </div>
 <div class="button">
-    <a href="/invoice_page">Create invoice</a>
+    <a href="/invoice_page" th:text="#{welcome_page.create_button}"></a>
 </div>
 <div class="button">
-    <a href="/report">Reporting</a>
+    <a href="/report" th:text="#{welcome_page.report_button}"></a>
 </div>
 <div class="button">
-    <a href="/test">Show invoice history</a>
+    <a href="/test" th:text="#{welcome_page.invoice_history_button}"></a>
 </div>
 <div class="button">
-    <a href="/about_application">About application</a>
+    <a href="/about_application" th:text="#{welcome_page.about_button}"></a>
 </div>
 </body>
 

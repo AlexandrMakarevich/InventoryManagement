@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -59,7 +58,7 @@ public class ReportController {
             response.flushBuffer();
             inputStream.close();
         } catch (Exception e){
-            LOGGER.warn("Request could not be completed at this moment. Please try again.");
+            LOGGER.warn("Report could not be saved at this moment. Please try again later.");
             e.printStackTrace();
         }
     }

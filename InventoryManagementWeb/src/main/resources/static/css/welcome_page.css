@@ -9,6 +9,24 @@ div {
 	box-sizing: border-box;
 }
 
+#navbar {
+	margin-top: 10px;
+	padding: 7px 17px;
+	margin-left: 20px;
+	list-style-type: none;
+	border: 2px solid #28d1e0;
+	border-radius: 20px 5px;
+	width: 250px;
+	text-align: center;
+	background-color: #415557;
+}
+#navbar li { display: inline; }
+
+#navbar span{
+	color: deepskyblue;
+	background: #415557;
+}
+
 .title{
 	font-size: 40px;
 	text-align: center;
@@ -19,7 +37,6 @@ div {
 
 .button {
 	background: #415557;
-	color: red;
 	border-radius: 3px;
 	display: block;
 	width: 240px;

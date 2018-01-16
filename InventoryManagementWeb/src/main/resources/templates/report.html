@@ -15,7 +15,7 @@
     <form th:action="@{/report}"  method="post">
     <div>
         <label for="date" class="date_label">Choose date:</label>
-        <input type="datetime-local" id="date" name="reportDate"/>
+        <input type="datetime-local" id="date" value="" name="reportDate"/>
         <input class="show_button" type="button"
                onclick="window.location.assign('/report?reportDate='+ document.getElementById('date').value);" value="Show report"/>
         <input class="save_button" type="button"
