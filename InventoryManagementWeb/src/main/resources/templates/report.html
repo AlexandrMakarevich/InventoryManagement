@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="../static/css/report.css" th:href="@{/css/report.css}" rel="stylesheet"/>
@@ -9,28 +9,30 @@
 <body>
 
     <div class="title">
-        <h3>Check inventory state: </h3>
+        <h3 th:text="#{report_page.message}"></h3>
     </div>
 
     <form th:action="@{/report}"  method="post">
     <div>
-        <label for="date" class="date_label">Choose date:</label>
+        <label for="date" class="date_label" th:text="#{report_page.date_label}"></label>
         <input type="datetime-local" id="date" value="" name="reportDate"/>
         <input class="show_button" type="button"
-               onclick="window.location.assign('/report?reportDate='+ document.getElementById('date').value);" value="Show report"/>
+               onclick="window.location.assign('/report?reportDate='+ document.getElementById('date').value);"
+               th:value="#{report_page.show_button}"/>
         <input class="save_button" type="button"
-               onclick="window.location.assign('/save_report?reportDate='+ document.getElementById('date').value);" value="Save report"/>
+               onclick="window.location.assign('/save_report?reportDate='+ document.getElementById('date').value);"
+               th:value="#{report_page.save_button}"/>
     </div>
     </form>
 
     <div>
         <table class="table">
             <tr class="table_title">
-                <th>PRODUCT_ID</th>
-                <th>PRODUCT_NAME</th>
-                <th>PRODUCT_PRICE</th>
-                <th>QUANTITY</th>
-                <th>DATE</th>
+                <th th:text="#{report_page.table_id}"></th>
+                <th th:text="#{report_page.table_name}"></th>
+                <th th:text="#{report_page.table_price}"></th>
+                <th th:text="#{report_page.table_quantity}"></th>
+                <th th:text="#{report_page.table_date}"></th>
             </tr>
             <tr th:each="inventoryState : ${inventoryStates}" class="table_body">
                 <td th:text="${inventoryState.inventoryStatePK.product.id}"/>
@@ -41,12 +43,12 @@
             </tr>
         </table>
         <div>
-            <h4 th:text="'Total Price :' + ${totalPrice}" class="table_body_total"/>
+            <h4 th:text="#{report_page.total_price(${totalPrice})}" class="table_body_total"/>
         </div>
     </div>
 
     <div class="return_button">
-        <a href="/welcome_page">Back on main page</a>
+        <a href="/welcome_page" th:text="#{report_page.return_button}"></a>
     </div>
 
 </body>

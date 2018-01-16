@@ -65,6 +65,7 @@ body {
 .table_title{
     background-color: deepskyblue;
     font-style: oblique;
+    text-transform: uppercase;
 }
 
 .table_body{
