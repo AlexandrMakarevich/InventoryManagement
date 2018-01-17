@@ -1,7 +1,11 @@
 package com.entity;
 
+import com.date.JsonDateDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.common.base.Objects;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.OneToOne;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -12,6 +16,9 @@ public class InventoryStatePK implements Serializable {
     private Product product;
 
     @Column(name = "state_date")
+
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonDeserialize(using = JsonDateDeserializer.class)
     private LocalDateTime stateDate = LocalDateTime.now();
 
     public Product getProduct() {

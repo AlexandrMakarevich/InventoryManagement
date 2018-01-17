@@ -7,11 +7,11 @@
 </head>
 <body>
     <div class="title">
-        <h3>Congratulations,your invoice is saved!</h3>
+        <h3 th:text="#{invoice_complete_page.message}"></h3>
     </div>
 
     <div class="back_button">
-        <a href="/welcome_page">Back on main page</a>
+        <a href="/" th:text="#{invoice_complete_page.return_button}"></a>
     </div>
 </body>
 </html>
