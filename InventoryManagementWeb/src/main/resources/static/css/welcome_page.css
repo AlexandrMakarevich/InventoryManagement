@@ -11,12 +11,12 @@ div {
 
 #navbar {
 	margin-top: 10px;
-	padding: 7px 17px;
+	padding: 9px 17px;
 	margin-left: 20px;
 	list-style-type: none;
 	border: 2px solid #28d1e0;
 	border-radius: 20px 5px;
-	width: 250px;
+	width: 550px;
 	text-align: center;
 	background-color: #415557;
 }
@@ -25,6 +25,26 @@ div {
 #navbar span{
 	color: deepskyblue;
 	background: #415557;
+}
+#navbar a{
+	margin-left: 30px;
+	padding: 5px 7px;
+	border-radius: 12px 5px;
+	border:2px solid #55abf2;
+	/*text-transform: uppercase;*/
+	text-decoration: none;
+	background-color: #b2e028;
+	color: #415557;
+}
+
+#log_out_button{
+	margin-left: 90%;
+	padding: 5px 7px;
+	border-radius: 12px 5px;
+	border:2px solid #55abf2;
+	text-decoration: none;
+	background-color: #b2e028;
+	color: #415557;
 }
 
 .title{

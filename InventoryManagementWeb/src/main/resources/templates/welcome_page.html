@@ -31,23 +31,30 @@
             <option value="ru" th:text="#{lang.ru}"></option>
         </select>
     </li>
+    <li>
+        <a href="/login_page" >Login</a>
+    </li>
 </ul>
 
-<div class="title">
-    <h1 th:text="#{welcome_page.message}"></h1>
-</div>
-<div class="button">
-    <a href="/invoice_page" th:text="#{welcome_page.create_button}"></a>
-</div>
-<div class="button">
-    <a href="/report" th:text="#{welcome_page.report_button}"></a>
-</div>
-<div class="button">
-    <a href="/test" th:text="#{welcome_page.invoice_history_button}"></a>
-</div>
-<div class="button">
-    <a href="/about_application" th:text="#{welcome_page.about_button}"></a>
-</div>
+    <form th:action="@{/logout}" method="get" id="log_out">
+        <button id="log_out_button" type="Submit">Logout</button>
+    </form>
+    <div class="title">
+        <h1 th:text="#{welcome_page.message}"></h1>
+    </div>
+
+    <div class="button">
+        <a href="/invoice_page" th:text="#{welcome_page.create_button}"></a>
+    </div>
+    <div class="button">
+        <a href="/report" th:text="#{welcome_page.report_button}"></a>
+    </div>
+    <div class="button">
+        <a href="/test" th:text="#{welcome_page.invoice_history_button}"></a>
+    </div>
+    <div class="button">
+        <a href="/about_application" th:text="#{welcome_page.about_button}"></a>
+    </div>
 </body>
 
 </html>

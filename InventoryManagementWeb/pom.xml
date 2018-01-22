@@ -32,7 +32,7 @@
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>
       <artifactId>jackson-datatype-jsr310</artifactId>
-      <version>2.4.0</version>
+      <version>2.9.2</version>
     </dependency>
 
     <dependency>
@@ -46,12 +46,24 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
       <version>${spring.boot.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>slf4j-api</artifactId>
+          <groupId>org.slf4j</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <!--for use html page-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
       <version>${spring.boot.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>slf4j-api</artifactId>
+          <groupId>org.slf4j</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <!--for security-->
@@ -69,6 +81,12 @@
     </dependency>
 
     <dependency>
+      <groupId>net.sourceforge.nekohtml</groupId>
+      <artifactId>nekohtml</artifactId>
+      <version>1.9.21</version>
+    </dependency>
+
+    <dependency>
       <groupId>com</groupId>
       <artifactId>InventoryManagementCore</artifactId>
       <version>1.0-SNAPSHOT</version>
@@ -80,11 +98,6 @@
             <type>test-jar</type>
           <version>1.0-SNAPSHOT</version>
           <scope>test</scope>
-      </dependency>
-      <dependency>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-autoconfigure</artifactId>
-          <version>1.5.4.RELEASE</version>
       </dependency>
 
   </dependencies>

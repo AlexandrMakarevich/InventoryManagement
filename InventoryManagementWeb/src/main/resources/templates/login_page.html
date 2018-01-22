@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../static/css/login_page.css" th:href="@{/css/login_page.css}" rel="stylesheet"/>
+
+    <title>Login page</title>
+</head>
+
+<body>
+
+    <form th:action="@{/login_page}" th:object="${user}" method="post">
+        <div>
+
+            <h3 class="title">Enter login and password</h3>
+
+            <div class="input_data">
+                <input class="input_form" type="text" placeholder="login" th:field="*{userName}"/><br/>
+                <input type="text" placeholder="password" th:field="*{password}"/><br/>
+            </div>
+
+                <input class="button_enter" type="submit" value="Enter"/><br/>
+        </div>
+
+        <div align="center" th:if="${param.error}">
+            <p style="font-size: 30; color: #FF1C19;">Login or Password invalid, please verify</p>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,47 @@
+body{
+    font-family: Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+    background-image: url(../image/fon4.jpg);
+}
+body input{
+    margin-left: 40%;
+    margin-top: 10px;
+}
+.title{
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 50px;
+    color: #28d1e0;
+}
+
+.input_data input{
+    padding: 15px 17px;
+    border-radius: 20px 5px;
+    border:2px solid #55abf2;
+    text-decoration: none;
+    background-color: #b2e028;
+    color: #415557;
+    font-size: 20px;
+}
+
+.button_enter{
+    margin-left: 40%;
+    margin-top: 30px;
+    background: #415557;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    color: #28d1e0;
+    border:2px solid #55abf2;
+    border-radius: 4px;
+    padding: 11px 30px;
+}
+
+.validation-message {
+    font-style: normal;
+    font-size: 12px;
+    color: #FF1C19;
+}
+

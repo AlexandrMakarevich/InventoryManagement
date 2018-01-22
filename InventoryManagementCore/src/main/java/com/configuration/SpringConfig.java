@@ -14,7 +14,6 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,7 +32,10 @@ public class SpringConfig {
     @Autowired
     private Environment env;
 
-    @Bean
+    private final String DATA_SOURCE = "dataSource";
+    private final String AUTO_PATCH = "autoPatch";
+
+    @Bean(name = DATA_SOURCE)
     public ComboPooledDataSource getDataSource() throws PropertyVetoException {
         ComboPooledDataSource cpds = new ComboPooledDataSource();
         cpds.setDriverClass(env.getProperty("driverClass"));
@@ -43,16 +45,18 @@ public class SpringConfig {
         return cpds;
     }
 
-    @Bean(initMethod = "patch")
+    @DependsOn(DATA_SOURCE)
+    @Bean(name = AUTO_PATCH, initMethod = "patch")
     public AutoPatchService initAutoPatch() throws PropertyVetoException {
         AutoPatchService autoPatchService = new AutoPatchService();
         autoPatchService.setDataSource(getDataSource());
         autoPatchService.setPatchPath(env.getProperty("patchPath"));
         autoPatchService.setSystemName(env.getProperty("systemName"));
-        autoPatchService.setDatabaseType(env.getProperty("databaseType"));//ask question about init-method
+        autoPatchService.setDatabaseType(env.getProperty("databaseType"));
         return autoPatchService;
     }
 
+    @DependsOn(AUTO_PATCH)
     @Bean
     public LocalSessionFactoryBean getSessionFactory() throws PropertyVetoException, IOException {
         LocalSessionFactoryBean lsfb = new LocalSessionFactoryBean();

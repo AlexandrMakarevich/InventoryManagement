@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../static/css/registration_page.css" th:href="@{/css/registration_page.css}" rel="stylesheet"/>
+
+    <title>Registration page</title>
+</head>
+
+<body>
+
+        <div>
+            <h3 class="title">Registration form</h3>
+
+            <a href="/">
+                <button class="button_back">Back on main</button>
+            </a>
+        </div>
+
+<form autocomplete="off" th:action="@{/registration_page}" th:object="${user}" method="post">
+    <div>
+        <div class="input_data">
+            <input class="input_form" type="text" placeholder="login" th:field="*{userName}"/>
+            <label
+                    th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"
+                    class="validation-message"></label><br/>
+            <input type="text" placeholder="password" th:field="*{password}"/>
+            <label
+                    th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                    class="validation-message"></label><br/>
+        </div>
+        <div class="button_form">
+        <input class="button_register" type="submit" value="Register User"/>
+        </div>
+    </div>
+
+    <div align="center" th:if="${param.error}">
+        <p style="font-size: 30; color: #FF1C19;">Email or Password invalid, please verify</p>
+    </div>
+</form>
+            <div  class="successMessage">
+            <span th:utext="${successMessage}"></span>
+            </div>
+</body>
+</html>
