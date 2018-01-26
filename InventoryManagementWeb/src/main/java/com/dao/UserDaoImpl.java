@@ -31,7 +31,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 
     @Override
     public void saveUser(User user) {
-//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setPassword(user.getPassword());
         Role existRole = roleDao.getRoleByName("USER").get(0);
         user.setRoles(new HashSet<>(Arrays.asList(existRole)));
