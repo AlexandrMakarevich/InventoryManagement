@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 import static com.invoice_components.listener.DeleteButtonListener.DELETE_BUTTON_LISTENER_BEAN;
 
 @Component(DELETE_BUTTON_LISTENER_BEAN)
@@ -14,15 +13,14 @@ public class DeleteButtonListener implements ActionListener {
 
     public static final String DELETE_BUTTON_LISTENER_BEAN = "deleteButtonListener";
     private InvoiceTable invoiceTable;
-    private List<InvoiceItem> invoiceItems;
 
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
             String productName = validate();
-            for (InvoiceItem invoiceItem : invoiceItems) {
+            for (InvoiceItem invoiceItem : invoiceTable.getInvoiceItems()) {
                 if (invoiceItem.getProduct().getProductName().equals(productName)) {
-                    invoiceItems.remove(invoiceItem);
+                    invoiceTable.getInvoiceItems().remove(invoiceItem);
                     break;
                 }
             }
@@ -45,7 +43,4 @@ public class DeleteButtonListener implements ActionListener {
         this.invoiceTable = invoiceTable;
     }
 
-    public void setInvoiceItems(List<InvoiceItem> invoiceItems) {
-        this.invoiceItems = invoiceItems;
-    }
 }

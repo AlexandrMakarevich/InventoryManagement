@@ -10,7 +10,6 @@ import javax.annotation.Resource;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 import static com.invoice_components.listener.AddButtonListener.ADD_BUTTON_LISTENER_BEAN;
 
 @Component(ADD_BUTTON_LISTENER_BEAN)
@@ -21,7 +20,6 @@ public class AddButtonListener implements ActionListener {
 
     public static final String ADD_BUTTON_LISTENER_BEAN = "addButtonListener";
     private InvoiceTable invoiceTable;
-    private List<InvoiceItem> invoiceItems;
     private JTextField quantityField;
     private ProductComboBox productComboBox;
 
@@ -33,7 +31,7 @@ public class AddButtonListener implements ActionListener {
             InvoiceItem invoiceItem = new InvoiceItem();
             invoiceItem.setProduct(product);
             invoiceItem.setProductQuantity(productQuantity);
-            invoiceItems.add(invoiceItem);
+            invoiceTable.getInvoiceItems().add(invoiceItem);
             invoiceTable.refreshModel();
         } catch (NumberFormatException e1) {
             JOptionPane.showMessageDialog(null,
@@ -45,7 +43,7 @@ public class AddButtonListener implements ActionListener {
 
     public Product validateAndInitializeProduct() {
         String productName = (String) productComboBox.getSelectedItem();
-        for (InvoiceItem invoiceItem : invoiceItems) {
+        for (InvoiceItem invoiceItem : invoiceTable.getInvoiceItems()) {
             if (invoiceItem.getProduct().getProductName().equals(productName)) {
                 throw new IllegalArgumentException("You have already added product with name " + productName);
             }
@@ -62,10 +60,6 @@ public class AddButtonListener implements ActionListener {
 
     public void setInvoiceTable(InvoiceTable invoiceTable) {
         this.invoiceTable = invoiceTable;
-    }
-
-    public void setInvoiceItems(List<InvoiceItem> invoiceItems) {
-        this.invoiceItems = invoiceItems;
     }
 
     public void setQuantityField(JTextField quantityField) {
