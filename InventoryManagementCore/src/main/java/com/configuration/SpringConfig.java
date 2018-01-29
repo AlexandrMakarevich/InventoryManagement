@@ -12,8 +12,11 @@ import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,6 +37,11 @@ public class SpringConfig {
 
     private final String DATA_SOURCE = "dataSource";
     private final String AUTO_PATCH = "autoPatch";
+
+    @Bean
+    public TaskScheduler taskScheduler() {
+        return new ConcurrentTaskScheduler(); //single threaded by default
+    }
 
     @Bean(name = DATA_SOURCE)
     public ComboPooledDataSource getDataSource() throws PropertyVetoException {

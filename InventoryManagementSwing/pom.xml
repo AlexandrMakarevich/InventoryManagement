@@ -12,6 +12,7 @@
   <groupId>com</groupId>
   <artifactId>InventoryManagementSwing</artifactId>
   <version>1.0-SNAPSHOT</version>
+
   <name>InventoryManagementSwing</name>
   <url>http://maven.apache.org</url>
 
@@ -27,6 +28,12 @@
       <artifactId>InventoryManagementCore</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
+
+      <!--<dependency>-->
+          <!--<groupId>com</groupId>-->
+          <!--<artifactId>InventoryManagementWeb</artifactId>-->
+          <!--<version>1.0-SNAPSHOT</version>-->
+      <!--</dependency>-->
 
   </dependencies>
 
