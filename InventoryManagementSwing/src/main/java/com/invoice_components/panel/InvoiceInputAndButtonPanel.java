@@ -10,17 +10,17 @@ import static com.invoice_components.combo_box.ProductComboBox.PRODUCT_COMBO_BOX
 import static com.invoice_components.listener.AddButtonListener.ADD_BUTTON_LISTENER_BEAN;
 import static com.invoice_components.listener.DeleteButtonListener.DELETE_BUTTON_LISTENER_BEAN;
 
-public class InputAndButtonPanel extends JPanel {
+public class InvoiceInputAndButtonPanel extends JPanel {
 
     private FlowLayout flowLayout = new FlowLayout();
     private ProductComboBox productComboBox;
     private JTextField textField = new JTextField("", 5);
-    private Button addProductButton = new Button("Add");
-    private Button deleteRowButton = new Button("Delete");
+    private JButton addProductButton = new JButton("Add");
+    private JButton deleteRowButton = new JButton("Delete");
     private AddButtonListener addButtonListener;
     private DeleteButtonListener deleteButtonListener;
 
-    public InputAndButtonPanel(ApplicationContext app) {
+    public InvoiceInputAndButtonPanel(ApplicationContext app) {
         initPanel(app);
     }
 

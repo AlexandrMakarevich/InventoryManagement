@@ -13,9 +13,9 @@ import static com.invoice_components.table.InvoiceTable.INVOICE_TABLE_BEAN;
 public class CreateInvoicePanel extends JPanel{
 
     private FlowLayout layout = new FlowLayout();
-    private Button createInvoiceButton = new Button("CreateInvoice");
+    private JButton createInvoiceButton = new JButton("CreateInvoice");
     private InvoiceTypeComboBox invoiceTypeComboBox;
-    private JLabel label = new JLabel("Chose invoice type :");
+    private JLabel label = new JLabel("Choose invoice type :");
     private InvoiceTable invoiceTable;
     private CreateInvoiceButtonListener createInvoiceButtonListener;
 

@@ -8,13 +8,13 @@ import java.awt.*;
 import static com.invoice_components.table.InvoiceTable.INVOICE_TABLE_BEAN;
 import static com.invoice_components.table.InvoiceTableModel.INVOICE_TABLE_MODEL_BEAN;
 
-public class TablePanel extends JPanel {
+public class InvoiceTablePanel extends JPanel {
 
     private FlowLayout flowLayout = new FlowLayout();
     private InvoiceTable invoiceTable;
     private InvoiceTableModel invoiceTableModel;
 
-    public TablePanel(ApplicationContext app ){
+    public InvoiceTablePanel(ApplicationContext app ){
         setLayout(flowLayout);
         invoiceTable = (InvoiceTable) app.getBean(INVOICE_TABLE_BEAN);
         invoiceTableModel = (InvoiceTableModel) app.getBean(INVOICE_TABLE_MODEL_BEAN);

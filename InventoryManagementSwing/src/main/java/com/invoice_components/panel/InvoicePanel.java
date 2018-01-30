@@ -7,15 +7,15 @@ import java.awt.*;
 public class InvoicePanel extends JPanel {
 
     private BorderLayout borderLayout = new BorderLayout();
-    private InputAndButtonPanel inputAndButtonPanel;
-    private TablePanel tablePanel;
+    private InvoiceInputAndButtonPanel inputAndButtonPanel;
+    private InvoiceTablePanel tablePanel;
     private CreateInvoicePanel createInvoicePanel;
 
     public InvoicePanel(ApplicationContext app) {
         setLayout(borderLayout);
-        inputAndButtonPanel = new InputAndButtonPanel(app);
+        inputAndButtonPanel = new InvoiceInputAndButtonPanel(app);
         add(inputAndButtonPanel, BorderLayout.PAGE_START);
-        tablePanel = new TablePanel(app);
+        tablePanel = new InvoiceTablePanel(app);
         add(tablePanel, BorderLayout.CENTER);
         inputAndButtonPanel.getAddButtonListener().setInvoiceTable(tablePanel.getInvoiceTable());
         inputAndButtonPanel.getDeleteButtonListener().setInvoiceTable(tablePanel.getInvoiceTable());
