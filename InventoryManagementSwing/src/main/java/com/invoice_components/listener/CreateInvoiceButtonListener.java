@@ -14,10 +14,7 @@ import javax.annotation.Resource;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import static com.invoice_components.listener.CreateInvoiceButtonListener.CREATE_INVOICE_BUTTON_LISTENER_BEAN;
 
 @Component(CREATE_INVOICE_BUTTON_LISTENER_BEAN)
@@ -30,6 +27,7 @@ public class CreateInvoiceButtonListener implements ActionListener {
     private Map<InvoiceType, Invoice> invoiceMap = ImmutableMap.of(InvoiceType.IN, new InvoiceIN(),
             InvoiceType.OUT, new InvoiceOUT());
     public static final String CREATE_INVOICE_BUTTON_LISTENER_BEAN = "createInvoiceButtonListener";
+    private static final String TAB_CHAR = "\t";
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -39,10 +37,23 @@ public class CreateInvoiceButtonListener implements ActionListener {
             JOptionPane.showMessageDialog(null, "Your invoice is empty!");
             return;
         }
+        StringBuilder message = invoiceInfo(invoiceItems);
         invoice.setInvoiceItems(invoiceItems);
         invoiceDao.saveInvoice(invoice);
         invoiceTable.setInvoiceItems(new ArrayList<>());
         invoiceTable.refreshModel();
+        JOptionPane.showMessageDialog(null,message);
+    }
+
+    public StringBuilder invoiceInfo(Set<InvoiceItem> invoiceItems){
+        StringBuilder message = new StringBuilder("You invoice is : ");
+        for (InvoiceItem invoiceItem : invoiceItems){
+            message.append(TAB_CHAR)
+                    .append(" product - ' " + invoiceItem.getProduct().getProductName() + " '")
+                    .append(" with quantity - ' " + invoiceItem.getProductQuantity() + " ';")
+                    .append(TAB_CHAR);
+        }
+        return message;
     }
 
     public void setInvoiceTable(InvoiceTable invoiceTable) {

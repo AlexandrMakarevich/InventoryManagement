@@ -1,22 +1,19 @@
 package com.invoice_components.listener;
 
-import com.dao.ProductDao;
 import com.entity.InvoiceItem;
 import com.entity.Product;
 import com.invoice_components.combo_box.ProductComboBox;
 import com.invoice_components.table.InvoiceTable;
 import org.springframework.stereotype.Component;
-import javax.annotation.Resource;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import static com.invoice_components.listener.AddButtonListener.ADD_BUTTON_LISTENER_BEAN;
 
 @Component(ADD_BUTTON_LISTENER_BEAN)
 public class AddButtonListener implements ActionListener {
-
-    @Resource(name = "productDaoImpl")
-    private ProductDao productDao;
 
     public static final String ADD_BUTTON_LISTENER_BEAN = "addButtonListener";
     private InvoiceTable invoiceTable;
@@ -42,13 +39,14 @@ public class AddButtonListener implements ActionListener {
     }
 
     public Product validateAndInitializeProduct() {
-        String productName = (String) productComboBox.getSelectedItem();
+        int selectedIndex = productComboBox.getSelectedIndex();
+        Product product = productComboBox.getProducts().get(selectedIndex);
         for (InvoiceItem invoiceItem : invoiceTable.getInvoiceItems()) {
-            if (invoiceItem.getProduct().getProductName().equals(productName)) {
-                throw new IllegalArgumentException("You have already added product with name " + productName);
+            if (invoiceItem.getProduct().equals(product)) {
+                throw new IllegalArgumentException("You have already added product with name " + product.getProductName());
             }
         }
-        return productDao.getProductByName(productName);
+        return product;
     }
 
     public Integer validateInputQuantity() {

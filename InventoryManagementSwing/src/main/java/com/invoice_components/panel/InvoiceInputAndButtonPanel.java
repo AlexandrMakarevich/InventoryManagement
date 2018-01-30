@@ -6,7 +6,7 @@ import com.invoice_components.listener.DeleteButtonListener;
 import org.springframework.context.ApplicationContext;
 import javax.swing.*;
 import java.awt.*;
-import static com.invoice_components.combo_box.ProductComboBox.PRODUCT_COMBO_BOX;
+import static com.invoice_components.combo_box.ProductComboBox.PRODUCT_COMBO_BOX_BEAN;
 import static com.invoice_components.listener.AddButtonListener.ADD_BUTTON_LISTENER_BEAN;
 import static com.invoice_components.listener.DeleteButtonListener.DELETE_BUTTON_LISTENER_BEAN;
 
@@ -26,7 +26,7 @@ public class InvoiceInputAndButtonPanel extends JPanel {
 
     public void initPanel(ApplicationContext app) {
         setLayout(flowLayout);
-        productComboBox = (ProductComboBox) app.getBean(PRODUCT_COMBO_BOX);
+        productComboBox = (ProductComboBox) app.getBean(PRODUCT_COMBO_BOX_BEAN);
         add(productComboBox);
         add(textField);
         add(addProductButton);
