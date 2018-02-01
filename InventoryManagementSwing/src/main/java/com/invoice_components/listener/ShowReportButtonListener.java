@@ -2,7 +2,7 @@ package com.invoice_components.listener;
 
 import com.dao.InventoryStateDao;
 import com.entity.InventoryState;
-import com.invoice_components.table.ReportTable;
+import com.invoice_components.table_model.ReportTableModel;
 import org.jdesktop.swingx.JXDatePicker;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
@@ -20,7 +20,7 @@ public class ShowReportButtonListener implements ActionListener {
 
     @Resource(name = "inventoryStateDaoImpl")
     private InventoryStateDao inventoryStateDao;
-    private ReportTable reportTable;
+    private ReportTableModel reportTableModel;
     private JXDatePicker jxDatePicker;
     public static final String SHOW_REPORT_BUTTON_LISTENER_BEAN = "showReportButtonListener";
 
@@ -30,8 +30,8 @@ public class ShowReportButtonListener implements ActionListener {
             Date inputDate = validateDate();
             List<InventoryState> inventoryStates = inventoryStateDao.
                     getActualInventoryStateByDate(LocalDateTime.ofInstant(inputDate.toInstant(), ZoneId.systemDefault()));
-            reportTable.setInventoryStates(inventoryStates);
-            reportTable.refreshTable();
+            reportTableModel.setInventoryStates(inventoryStates);
+            reportTableModel.fireTableDataChanged();
         } catch (IllegalArgumentException e1) {
             JOptionPane.showMessageDialog(null, e1.getMessage());
         }
@@ -44,8 +44,8 @@ public class ShowReportButtonListener implements ActionListener {
         return jxDatePicker.getDate();
     }
 
-    public void setReportTable(ReportTable reportTable) {
-        this.reportTable = reportTable;
+    public void setReportTableModel(ReportTableModel reportTableModel) {
+        this.reportTableModel = reportTableModel;
     }
 
     public void setJxDatePicker(JXDatePicker jxDatePicker) {

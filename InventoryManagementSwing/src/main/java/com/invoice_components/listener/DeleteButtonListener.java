@@ -1,7 +1,7 @@
 package com.invoice_components.listener;
 
 import com.entity.InvoiceItem;
-import com.invoice_components.table.InvoiceTable;
+import com.invoice_components.table_model.InvoiceTableModel;
 import org.springframework.stereotype.Component;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,15 +12,16 @@ import static com.invoice_components.listener.DeleteButtonListener.DELETE_BUTTON
 public class DeleteButtonListener implements ActionListener {
 
     public static final String DELETE_BUTTON_LISTENER_BEAN = "deleteButtonListener";
-    private InvoiceTable invoiceTable;
+    private InvoiceTableModel invoiceTableModel;
+    private JTable invoiceTable;
 
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
             String productName = validate();
-            for (InvoiceItem invoiceItem : invoiceTable.getInvoiceItems()) {
+            for (InvoiceItem invoiceItem : invoiceTableModel.getInvoiceItems()) {
                 if (invoiceItem.getProduct().getProductName().equals(productName)) {
-                    invoiceTable.getInvoiceItems().remove(invoiceItem);
+                    invoiceTableModel.getInvoiceItems().remove(invoiceItem);
                     break;
                 }
             }
@@ -29,18 +30,29 @@ public class DeleteButtonListener implements ActionListener {
         }catch (IllegalArgumentException m) {
             JOptionPane.showMessageDialog(null, m.getMessage());
         }
-        invoiceTable.refreshModel();
+        invoiceTableModel.fireTableDataChanged();
     }
 
     public String validate() {
-        if (invoiceTable.getValueAt(invoiceTable.getSelectedRow(), 0) == null) {
+        if (invoiceTableModel.getValueAt(invoiceTable.getSelectedRow(), 0) == null) {
             throw new IllegalArgumentException("Column is empty");
         }
-        return (String) invoiceTable.getValueAt(invoiceTable.getSelectedRow(), 0);
+        return (String) invoiceTableModel.getValueAt(invoiceTable.getSelectedRow(), 0);
     }
 
-    public void setInvoiceTable(InvoiceTable invoiceTable) {
+    public InvoiceTableModel getInvoiceTableModel() {
+        return invoiceTableModel;
+    }
+
+    public void setInvoiceTableModel(InvoiceTableModel invoiceTableModel) {
+        this.invoiceTableModel = invoiceTableModel;
+    }
+
+    public JTable getInvoiceTable() {
+        return invoiceTable;
+    }
+
+    public void setInvoiceTable(JTable invoiceTable) {
         this.invoiceTable = invoiceTable;
     }
-
 }

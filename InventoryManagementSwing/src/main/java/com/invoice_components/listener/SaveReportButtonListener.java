@@ -38,6 +38,7 @@ public class SaveReportButtonListener implements ActionListener {
                     reportService.generateReport(inputDate, ReportFormat.PDF, jfc.getSelectedFile().getAbsolutePath() + "/ReportPdf.pdf");
                 } catch (IOException | DocumentException e1) {
                     e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
             }
         }

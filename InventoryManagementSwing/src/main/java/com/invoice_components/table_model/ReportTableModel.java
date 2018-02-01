@@ -1,17 +1,20 @@
-package com.invoice_components.table;
+package com.invoice_components.table_model;
 
 import com.entity.InventoryState;
 import org.springframework.stereotype.Component;
+
 import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import static com.invoice_components.table.ReportTableModel.REPORT_TABLE_MODEL_BEAN;
+
+import static com.invoice_components.table_model.ReportTableModel.REPORT_TABLE_MODEL_BEAN;
 
 @Component(REPORT_TABLE_MODEL_BEAN)
 public class ReportTableModel extends AbstractTableModel {
 
     public static final String REPORT_TABLE_MODEL_BEAN = "reportTableModel";
-    private List<InventoryState> inventoryStates;
+    private List<InventoryState> inventoryStates = new ArrayList<>();
     public List<String> columnName = Arrays.asList("PRODUCT_ID",
             "PRODUCT_NAME", "PRODUCT_PRICE", "QUANTITY", "DATE");
 

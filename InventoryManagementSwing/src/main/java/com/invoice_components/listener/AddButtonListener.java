@@ -2,23 +2,22 @@ package com.invoice_components.listener;
 
 import com.entity.InvoiceItem;
 import com.entity.Product;
-import com.invoice_components.combo_box.ProductComboBox;
-import com.invoice_components.table.InvoiceTable;
+import com.invoice_components.combo_box.ItemProduct;
+import com.invoice_components.combo_box.ProductComboBoxModel;
+import com.invoice_components.table_model.InvoiceTableModel;
 import org.springframework.stereotype.Component;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import static com.invoice_components.listener.AddButtonListener.ADD_BUTTON_LISTENER_BEAN;
 
 @Component(ADD_BUTTON_LISTENER_BEAN)
 public class AddButtonListener implements ActionListener {
 
     public static final String ADD_BUTTON_LISTENER_BEAN = "addButtonListener";
-    private InvoiceTable invoiceTable;
+    private InvoiceTableModel invoiceTableModel;
     private JTextField quantityField;
-    private ProductComboBox productComboBox;
+    private ProductComboBoxModel productComboBoxModel;
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -28,25 +27,26 @@ public class AddButtonListener implements ActionListener {
             InvoiceItem invoiceItem = new InvoiceItem();
             invoiceItem.setProduct(product);
             invoiceItem.setProductQuantity(productQuantity);
-            invoiceTable.getInvoiceItems().add(invoiceItem);
-            invoiceTable.refreshModel();
+            invoiceTableModel.getInvoiceItems().add(invoiceItem);
+            invoiceTableModel.fireTableDataChanged();
         } catch (NumberFormatException e1) {
             JOptionPane.showMessageDialog(null,
                     "You input wrong format of product quantity " + quantityField.getText());
         } catch (IllegalArgumentException message) {
             JOptionPane.showMessageDialog(null, message.getMessage());
+        } catch (NullPointerException m) {
+            JOptionPane.showMessageDialog(null, "You did not specify the product");
         }
     }
 
     public Product validateAndInitializeProduct() {
-        int selectedIndex = productComboBox.getSelectedIndex();
-        Product product = productComboBox.getProducts().get(selectedIndex);
-        for (InvoiceItem invoiceItem : invoiceTable.getInvoiceItems()) {
-            if (invoiceItem.getProduct().equals(product)) {
-                throw new IllegalArgumentException("You have already added product with name " + product.getProductName());
+        ItemProduct itemProduct = (ItemProduct) productComboBoxModel.getSelectedItem();
+        for (InvoiceItem invoiceItem : invoiceTableModel.getInvoiceItems()) {
+            if (invoiceItem.getProduct().equals(itemProduct.getProduct())) {
+                throw new IllegalArgumentException("You have already added product with name " + itemProduct.getProduct().getProductName());
             }
         }
-        return product;
+        return itemProduct.getProduct();
     }
 
     public Integer validateInputQuantity() {
@@ -56,15 +56,15 @@ public class AddButtonListener implements ActionListener {
         return Integer.valueOf(quantityField.getText().trim());
     }
 
-    public void setInvoiceTable(InvoiceTable invoiceTable) {
-        this.invoiceTable = invoiceTable;
+    public void setInvoiceTableModel(InvoiceTableModel invoiceTableModel) {
+        this.invoiceTableModel = invoiceTableModel;
     }
 
     public void setQuantityField(JTextField quantityField) {
         this.quantityField = quantityField;
     }
 
-    public void setProductComboBox(ProductComboBox productComboBox) {
-        this.productComboBox = productComboBox;
+    public void setProductComboBoxModel(ProductComboBoxModel productComboBoxModel) {
+        this.productComboBoxModel = productComboBoxModel;
     }
 }
