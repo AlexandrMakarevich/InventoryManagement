@@ -1,6 +1,7 @@
 package com.invoice_components.listener;
 
 import com.constant.ReportFormat;
+import com.invoice_components.message.MessageProvider;
 import com.itextpdf.text.DocumentException;
 import com.report.ReportService;
 import org.jdesktop.swingx.JXDatePicker;
@@ -23,6 +24,7 @@ public class SaveReportButtonListener implements ActionListener {
     @Resource(name = "reportService")
     private ReportService reportService;
     public static final String SAVE_REPORT_BUTTON_LISTENER_BEAN = "saveReportButtonListener";
+    private MessageProvider messageProvider = new MessageProvider();
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -38,7 +40,7 @@ public class SaveReportButtonListener implements ActionListener {
                     reportService.generateReport(inputDate, ReportFormat.PDF, jfc.getSelectedFile().getAbsolutePath() + "/ReportPdf.pdf");
                 } catch (IOException | DocumentException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null, e1.getMessage());
+                    messageProvider.showMessage(e1.getMessage());
                 }
             }
         }

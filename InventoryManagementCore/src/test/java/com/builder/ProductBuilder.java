@@ -49,4 +49,8 @@ public class ProductBuilder {
     public Product build() {
         return product;
     }
+
+    public void reset() {
+        init();
+    }
 }

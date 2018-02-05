@@ -2,13 +2,13 @@ package com.invoice_components.panel;
 
 import com.invoice_components.combo_box.InvoiceTypeComboBoxModel;
 import com.invoice_components.listener.CreateInvoiceButtonListener;
-import com.invoice_components.table_model.InvoiceTableModel;
+import com.invoice_components.table_model.InvoiceItemTableModel;
 import org.springframework.context.ApplicationContext;
 import javax.swing.*;
 import java.awt.*;
 import static com.invoice_components.combo_box.InvoiceTypeComboBoxModel.INVOICE_TYPE_COMBO_BOX_MODEL_BEAN;
 import static com.invoice_components.listener.CreateInvoiceButtonListener.CREATE_INVOICE_BUTTON_LISTENER_BEAN;
-import static com.invoice_components.table_model.InvoiceTableModel.INVOICE_TABLE_MODEL_BEAN;
+import static com.invoice_components.table_model.InvoiceItemTableModel.INVOICE_ITEM_TABLE_MODEL_BEAN;
 
 public class CreateInvoicePanel extends JPanel{
 
@@ -17,7 +17,7 @@ public class CreateInvoicePanel extends JPanel{
     private InvoiceTypeComboBoxModel invoiceTypeComboBoxModel;
     private JComboBox invoiceTypeComboBox;
     private JLabel label = new JLabel("Choose invoice type :");
-    private InvoiceTableModel invoiceTableModel;
+    private InvoiceItemTableModel invoiceItemTableModel;
     private CreateInvoiceButtonListener createInvoiceButtonListener;
 
     public CreateInvoicePanel(ApplicationContext app) {
@@ -27,10 +27,10 @@ public class CreateInvoicePanel extends JPanel{
         add(label);
         add(invoiceTypeComboBox);
         add(createInvoiceButton);
-        invoiceTableModel = (InvoiceTableModel) app.getBean(INVOICE_TABLE_MODEL_BEAN);
+        invoiceItemTableModel = (InvoiceItemTableModel) app.getBean(INVOICE_ITEM_TABLE_MODEL_BEAN);
         createInvoiceButtonListener = (CreateInvoiceButtonListener) app.getBean(CREATE_INVOICE_BUTTON_LISTENER_BEAN);
         createInvoiceButtonListener.setInvoiceTypeComboBoxModel(invoiceTypeComboBoxModel);
-        createInvoiceButtonListener.setInvoiceTableModel(invoiceTableModel);
+        createInvoiceButtonListener.setInvoiceItemTableModel(invoiceItemTableModel);
         createInvoiceButton.addActionListener(createInvoiceButtonListener);
     }
 }

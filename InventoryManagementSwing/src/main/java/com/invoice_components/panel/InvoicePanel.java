@@ -17,8 +17,7 @@ public class InvoicePanel extends JPanel {
         add(inputAndButtonPanel, BorderLayout.PAGE_START);
         tablePanel = new InvoiceTablePanel(app);
         add(tablePanel, BorderLayout.CENTER);
-        inputAndButtonPanel.getAddButtonListener().setInvoiceTableModel(tablePanel.getInvoiceTableModel());
-        inputAndButtonPanel.getDeleteButtonListener().setInvoiceTableModel(tablePanel.getInvoiceTableModel());
+        inputAndButtonPanel.getAddButtonListener().setInvoiceItemTableModel(tablePanel.getInvoiceItemTableModel());
         inputAndButtonPanel.getDeleteButtonListener().setInvoiceTable(tablePanel.getInvoiceTable());
         createInvoicePanel = new CreateInvoicePanel(app);
         add(createInvoicePanel, BorderLayout.PAGE_END);

@@ -1,7 +1,8 @@
 package com.invoice_components.listener;
 
 import com.entity.InvoiceItem;
-import com.invoice_components.table_model.InvoiceTableModel;
+import com.invoice_components.message.MessageProvider;
+import com.invoice_components.table_model.InvoiceItemTableModel;
 import org.springframework.stereotype.Component;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,44 +13,29 @@ import static com.invoice_components.listener.DeleteButtonListener.DELETE_BUTTON
 public class DeleteButtonListener implements ActionListener {
 
     public static final String DELETE_BUTTON_LISTENER_BEAN = "deleteButtonListener";
-    private InvoiceTableModel invoiceTableModel;
     private JTable invoiceTable;
+    private MessageProvider messageProvider = new MessageProvider();
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Integer selectedIndex = invoiceTable.getSelectedRow();
+        String productName = null;
         try {
-            String productName = validate();
-            for (InvoiceItem invoiceItem : invoiceTableModel.getInvoiceItems()) {
-                if (invoiceItem.getProduct().getProductName().equals(productName)) {
-                    invoiceTableModel.getInvoiceItems().remove(invoiceItem);
-                    break;
-                }
+            productName = (String) getInvoiceItemTableModel().getValueAt(selectedIndex, 0);
+        } catch (ArrayIndexOutOfBoundsException m) {
+            messageProvider.showMessage("You did not choose what to delete!");
+        }
+        for (InvoiceItem invoiceItem : getInvoiceItemTableModel().getInvoiceItems()) {
+            if (invoiceItem.getProduct().getProductName().equals(productName)) {
+                getInvoiceItemTableModel().getInvoiceItems().remove(invoiceItem);
+                break;
             }
-        }catch (ArrayIndexOutOfBoundsException m) {
-            JOptionPane.showMessageDialog(null, "You did not choose what to delete!");
-        }catch (IllegalArgumentException m) {
-            JOptionPane.showMessageDialog(null, m.getMessage());
         }
-        invoiceTableModel.fireTableDataChanged();
+        getInvoiceItemTableModel().fireTableDataChanged();
     }
 
-    public String validate() {
-        if (invoiceTableModel.getValueAt(invoiceTable.getSelectedRow(), 0) == null) {
-            throw new IllegalArgumentException("Column is empty");
-        }
-        return (String) invoiceTableModel.getValueAt(invoiceTable.getSelectedRow(), 0);
-    }
-
-    public InvoiceTableModel getInvoiceTableModel() {
-        return invoiceTableModel;
-    }
-
-    public void setInvoiceTableModel(InvoiceTableModel invoiceTableModel) {
-        this.invoiceTableModel = invoiceTableModel;
-    }
-
-    public JTable getInvoiceTable() {
-        return invoiceTable;
+    private InvoiceItemTableModel getInvoiceItemTableModel(){
+        return (InvoiceItemTableModel) invoiceTable.getModel();
     }
 
     public void setInvoiceTable(JTable invoiceTable) {

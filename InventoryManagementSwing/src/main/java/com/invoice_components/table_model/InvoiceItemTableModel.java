@@ -6,14 +6,14 @@ import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import static com.invoice_components.table_model.InvoiceTableModel.INVOICE_TABLE_MODEL_BEAN;
+import static com.invoice_components.table_model.InvoiceItemTableModel.INVOICE_ITEM_TABLE_MODEL_BEAN;
 
-@Component(INVOICE_TABLE_MODEL_BEAN)
-public class InvoiceTableModel extends AbstractTableModel {
+@Component(INVOICE_ITEM_TABLE_MODEL_BEAN)
+public class InvoiceItemTableModel extends AbstractTableModel {
 
     private List<String> columnName = Arrays.asList("Product", "Quantity");
     private List<InvoiceItem> invoiceItems = new ArrayList<>();
-    public static final String INVOICE_TABLE_MODEL_BEAN = "invoiceTableModel";
+    public static final String INVOICE_ITEM_TABLE_MODEL_BEAN = "invoiceItemTableModel";
 
     @Override
     public int getRowCount() {
@@ -46,6 +46,10 @@ public class InvoiceTableModel extends AbstractTableModel {
             return columnName.get(1);
         }
         throw new IllegalArgumentException("Wrong column index " + column);
+    }
+
+    public void resetModel() {
+        invoiceItems = new ArrayList<>();
     }
 
     public void setInvoiceItems(List<InvoiceItem> invoiceItems) {

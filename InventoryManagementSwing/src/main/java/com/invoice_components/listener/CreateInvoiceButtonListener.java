@@ -8,13 +8,12 @@ import com.entity.InvoiceItem;
 import com.entity.InvoiceOUT;
 import com.google.common.collect.ImmutableMap;
 import com.invoice_components.combo_box.InvoiceTypeComboBoxModel;
-import com.invoice_components.table_model.InvoiceTableModel;
+import com.invoice_components.message.MessageProvider;
+import com.invoice_components.table_model.InvoiceItemTableModel;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -25,38 +24,32 @@ public class CreateInvoiceButtonListener implements ActionListener {
 
     @Resource(name = "invoiceDaoImpl")
     private InvoiceDao invoiceDao;
-    private InvoiceTableModel invoiceTableModel;
+    private InvoiceItemTableModel invoiceItemTableModel;
     private InvoiceTypeComboBoxModel invoiceTypeComboBoxModel;
     private Map<InvoiceType, Invoice> invoiceMap = ImmutableMap.of(InvoiceType.IN, new InvoiceIN(),
             InvoiceType.OUT, new InvoiceOUT());
     public static final String CREATE_INVOICE_BUTTON_LISTENER_BEAN = "createInvoiceButtonListener";
     private static final String TAB_CHAR = "\t";
+    private MessageProvider messageProvider = new MessageProvider();
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        try {
-            Invoice invoice = invoiceMap.get(validate());
-            Set<InvoiceItem> invoiceItems = new HashSet<>(invoiceTableModel.getInvoiceItems());
-            if (invoiceItems.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Your invoice is empty!");
-                return;
-            }
-            StringBuilder message = invoiceInfo(invoiceItems);
-            invoice.setInvoiceItems(invoiceItems);
-            invoiceDao.saveInvoice(invoice);
-            invoiceTableModel.setInvoiceItems(new ArrayList<>());
-            invoiceTableModel.fireTableDataChanged();
-            JOptionPane.showMessageDialog(null, message);
-        } catch (IllegalArgumentException e1) {
-            JOptionPane.showMessageDialog(null, e1.getMessage());
-        }
-    }
-
-    public InvoiceType validate() {
         if (invoiceTypeComboBoxModel.getSelectedItem() == null) {
-            throw new IllegalArgumentException("You did not specify invoice type");
+            messageProvider.showMessage("You did not specify invoice type");
+            return;
         }
-        return (InvoiceType) invoiceTypeComboBoxModel.getSelectedItem();
+        Invoice invoice = invoiceMap.get(invoiceTypeComboBoxModel.getSelectedItem());
+        Set<InvoiceItem> invoiceItems = new HashSet<>(invoiceItemTableModel.getInvoiceItems());
+        if (invoiceItems.isEmpty()) {
+            messageProvider.showMessage("Your invoice is empty!");
+            return;
+        }
+        StringBuilder message = invoiceInfo(invoiceItems);
+        invoice.setInvoiceItems(invoiceItems);
+        invoiceDao.saveInvoice(invoice);
+        invoiceItemTableModel.resetModel();
+        invoiceItemTableModel.fireTableDataChanged();
+        messageProvider.showMessage(message.toString());
     }
 
     public StringBuilder invoiceInfo(Set<InvoiceItem> invoiceItems){
@@ -70,8 +63,16 @@ public class CreateInvoiceButtonListener implements ActionListener {
         return message;
     }
 
-    public void setInvoiceTableModel(InvoiceTableModel invoiceTableModel) {
-        this.invoiceTableModel = invoiceTableModel;
+    public void setInvoiceDao(InvoiceDao invoiceDao) {
+        this.invoiceDao = invoiceDao;
+    }
+
+    public void setMessageProvider(MessageProvider messageProvider) {
+        this.messageProvider = messageProvider;
+    }
+
+    public void setInvoiceItemTableModel(InvoiceItemTableModel invoiceItemTableModel) {
+        this.invoiceItemTableModel = invoiceItemTableModel;
     }
 
     public void setInvoiceTypeComboBoxModel(InvoiceTypeComboBoxModel invoiceTypeComboBoxModel) {
