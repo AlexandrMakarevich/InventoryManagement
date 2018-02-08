@@ -1,10 +1,12 @@
 package com.dao;
 
+import com.email.InvoiceEmailService;
 import com.entity.Invoice;
 import com.entity.InvoiceItem;
 import com.entity.Product;
 import org.hibernate.query.NativeQuery;
 import org.springframework.stereotype.Repository;
+
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Set;
@@ -15,10 +17,14 @@ public class InvoiceDaoImpl extends BaseDao implements InvoiceDao{
     @Resource(name = "productDaoImpl")
     private ProductDao productDao;
 
+    @Resource(name = "invoiceEmailService")
+    private InvoiceEmailService invoiceEmailService;
+
     @Override
-    public void saveInvoice(Invoice invoice) {
+    public void saveOrUpdateInvoice(Invoice invoice) {
         checkAndProcessProduct(invoice.getInvoiceItems());
         getSession().saveOrUpdate(invoice);
+        invoiceEmailService.sendEmail(invoice);
     }
 
     @Override

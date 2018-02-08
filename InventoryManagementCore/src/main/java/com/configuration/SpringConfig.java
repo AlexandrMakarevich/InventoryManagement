@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.scheduling.TaskScheduler;
@@ -27,7 +29,8 @@ import java.util.Properties;
 @Configuration
 @ComponentScan(basePackages = "com")
 @PropertySources({@PropertySource("classpath:autoPatch.properties"),
-                   @PropertySource("classpath:db.properties")})
+                   @PropertySource("classpath:db.properties"),
+                    @PropertySource("classpath:email.properties")})
 @EnableTransactionManagement
 @EnableScheduling
 public class SpringConfig {
@@ -83,6 +86,24 @@ public class SpringConfig {
         htm.setSessionFactory(getSessionFactory().getObject());
         htm.setNestedTransactionAllowed(true);
         return htm;
+    }
+
+    @Bean
+    public JavaMailSender getJavaMailSender(){
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+
+        mailSender.setUsername(env.getProperty("userEmailAddress"));
+        mailSender.setPassword(env.getProperty("userEmailPassword"));
+
+        Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.debug", "true");
+
+        return mailSender;
     }
 
     @Bean(name = "initializerReport")

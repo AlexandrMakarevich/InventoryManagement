@@ -15,7 +15,7 @@ public class ProductComboBoxModel extends AbstractListModel implements ComboBoxM
 
     public static final String PRODUCT_COMBO_BOX_MODEL_BEAN = "productComboBoxModel";
 
-    @Resource(name = "productDaoImpl")
+    @Resource(name = "restProductDaoImpl")
     private ProductDao productDao;
     private List<ItemProduct> itemProducts;
     private ItemProduct selectedProduct;

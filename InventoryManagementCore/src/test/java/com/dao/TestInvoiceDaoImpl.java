@@ -36,7 +36,7 @@ public class TestInvoiceDaoImpl extends BaseTest {
         Set<InvoiceItem> invoiceItems = new HashSet<>();
         invoiceItems.add(invoiceItem);
         Invoice invoice = invoiceBuilder.withSetInvoiceItems(invoiceItems).build();
-        invoiceDao.saveInvoice(invoice);
+        invoiceDao.saveOrUpdateInvoice(invoice);
         Invoice actualInvoice = invoiceDao.getInvoiceById(invoice.getId());
         System.out.println(invoice);
         System.out.println(actualInvoice);

@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -43,7 +42,7 @@ public class InvoiceController {
             throw new IllegalStateException("CreateInvoiceRequest must be initialize");
         }
         Invoice invoice = invoiceRequestBuilder.buildInvoice(createInvoice);
-        invoiceDao.saveInvoice(invoice);
+        invoiceDao.saveOrUpdateInvoice(invoice);
         return "invoice_creation_complete";
     }
 }

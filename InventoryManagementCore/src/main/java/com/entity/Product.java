@@ -1,5 +1,9 @@
 package com.entity;
 
+import com.date.JsonDateInstantDeserializer;
+import com.date.JsonDateInstantSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.google.common.base.Objects;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -58,10 +62,12 @@ public class Product implements Serializable {
         this.description = description;
     }
 
+    @JsonDeserialize(using = JsonDateInstantDeserializer.class)
     public Instant getCreationDate() {
         return creationDate;
     }
 
+    @JsonSerialize(using = JsonDateInstantSerializer.class)
     public void setCreationDate(Instant creationDate) {
         this.creationDate = creationDate;
     }

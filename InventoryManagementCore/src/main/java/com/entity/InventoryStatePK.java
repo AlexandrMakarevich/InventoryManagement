@@ -16,8 +16,6 @@ public class InventoryStatePK implements Serializable {
     private Product product;
 
     @Column(name = "state_date")
-
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonDeserialize(using = JsonDateDeserializer.class)
     private LocalDateTime stateDate = LocalDateTime.now();
 

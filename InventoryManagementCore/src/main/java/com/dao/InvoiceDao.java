@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface InvoiceDao {
 
-    void saveInvoice(Invoice invoice);
+    void saveOrUpdateInvoice(Invoice invoice);
 
     Invoice getInvoiceById(int id);
 

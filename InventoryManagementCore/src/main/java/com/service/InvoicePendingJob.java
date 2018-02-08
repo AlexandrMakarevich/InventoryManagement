@@ -10,7 +10,7 @@ public class InvoicePendingJob {
     @Resource(name = "invoiceService")
     private InvoiceService invoiceService;
 
-    @Scheduled(fixedDelay = 300000)
+    @Scheduled(fixedDelay = 3000)
     public void processPendingInvoiceJob() {
         invoiceService.processPendingInvoices();
     }

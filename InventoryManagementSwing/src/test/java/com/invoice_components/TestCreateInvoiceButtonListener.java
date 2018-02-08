@@ -58,7 +58,7 @@ public class TestCreateInvoiceButtonListener {
 
         Invoice invoice = new InvoiceIN();
         invoice.setInvoiceItems(new HashSet<>(invoiceItems));
-        Mockito.verify(invoiceDao, Mockito.times(1)).saveInvoice(invoice);
+        Mockito.verify(invoiceDao, Mockito.times(1)).saveOrUpdateInvoice(invoice);
 
         StringBuilder message = createInvoiceButtonListener.invoiceInfo(new HashSet<>(invoiceItems));
         Mockito.verify(messageProvider, Mockito.times(1)).showMessage(message.toString());

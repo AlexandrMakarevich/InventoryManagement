@@ -28,7 +28,7 @@ public class InvoiceService {
             } catch (Exception e) {
                 invoice.setStatus(InvoiceStatus.ERROR);
             }
-            invoiceDao.saveInvoice(invoice);
+            invoiceDao.saveOrUpdateInvoice(invoice);
         }
     }
 }

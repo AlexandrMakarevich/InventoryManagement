@@ -22,7 +22,7 @@ import static com.invoice_components.listener.CreateInvoiceButtonListener.CREATE
 @Component(CREATE_INVOICE_BUTTON_LISTENER_BEAN)
 public class CreateInvoiceButtonListener implements ActionListener {
 
-    @Resource(name = "invoiceDaoImpl")
+    @Resource(name = "restInvoiceDaoImpl")
     private InvoiceDao invoiceDao;
     private InvoiceItemTableModel invoiceItemTableModel;
     private InvoiceTypeComboBoxModel invoiceTypeComboBoxModel;
@@ -46,7 +46,7 @@ public class CreateInvoiceButtonListener implements ActionListener {
         }
         StringBuilder message = invoiceInfo(invoiceItems);
         invoice.setInvoiceItems(invoiceItems);
-        invoiceDao.saveInvoice(invoice);
+        invoiceDao.saveOrUpdateInvoice(invoice);
         invoiceItemTableModel.resetModel();
         invoiceItemTableModel.fireTableDataChanged();
         messageProvider.showMessage(message.toString());

@@ -83,6 +83,6 @@ public class TestInvoiceService extends TestProcessInvoice {
     }
 
     public void saveAllInvoices(List<Invoice> invoiceList) {
-        invoiceList.forEach(invoice -> invoiceDao.saveInvoice(invoice));
+        invoiceList.forEach(invoice -> invoiceDao.saveOrUpdateInvoice(invoice));
     }
 }
