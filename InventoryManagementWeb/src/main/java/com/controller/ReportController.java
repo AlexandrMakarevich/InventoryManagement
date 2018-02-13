@@ -5,7 +5,8 @@ import com.dao.InventoryStateDao;
 import com.entity.InventoryState;
 import com.report.ReportService;
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,7 @@ public class ReportController {
     @Resource(name = "inventoryStateDaoImpl")
     private InventoryStateDao inventoryStateDao;
 
-    private static final Logger LOGGER = Logger.getLogger(ReportController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReportController.class);
 
     @RequestMapping("/report")
     public String reportPage(Model model,@RequestParam(value = "reportDate", required = false) String localDateTime) {

@@ -10,11 +10,15 @@ import java.time.format.DateTimeFormatter;
 
 public class JsonDateInstantSerializer extends JsonSerializer<Instant> {
 
-    private DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneOffset.UTC);
+  private DateTimeFormatter fmt =
+      DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneOffset.UTC);
 
-    @Override
-    public void serialize(Instant instant, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-        String str = fmt.format(instant);
-        gen.writeString(str);
-    }
+  @Override
+  public void serialize(
+      Instant instant,
+      JsonGenerator gen,
+      SerializerProvider serializers) throws IOException {
+    String str = fmt.format(instant);
+    gen.writeString(str);
+  }
 }

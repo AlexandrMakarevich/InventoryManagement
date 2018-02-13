@@ -8,14 +8,23 @@ import org.springframework.stereotype.Service;
 @Service(value = "emailSenderServiceImpl")
 public class EmailSenderServiceImpl implements EmailSenderService {
 
-    @Autowired
-    private JavaMailSender javaMailSender;
+  @Autowired
+  private JavaMailSender javaMailSender;
 
-    public void sendMessage(String to, String subject, String text) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(text);
-        javaMailSender.send(message);
-    }
+  /**
+   * Method will send message with configured parameters.
+   *
+   * @param to - email address
+   *
+   * @param subject - topic name
+   *
+   * @param text - message for email
+   */
+  public void sendMessage(String to, String subject, String text) {
+    SimpleMailMessage message = new SimpleMailMessage();
+    message.setTo(to);
+    message.setSubject(subject);
+    message.setText(text);
+    javaMailSender.send(message);
+  }
 }

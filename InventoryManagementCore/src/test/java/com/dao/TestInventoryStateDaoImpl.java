@@ -5,7 +5,7 @@ import com.builder.InventoryStateBuilder;
 import com.builder.InvoiceItemBuilder;
 import com.builder.ProductPersistentBuilder;
 import com.entity.InventoryState;
-import com.entity.InventoryStatePK;
+import com.entity.InventoryStatePk;
 import com.entity.InvoiceItem;
 import com.entity.Product;
 import org.junit.Assert;
@@ -51,18 +51,18 @@ public class TestInventoryStateDaoImpl extends BaseTest {
     public void testGetInventoryStateByPK() {
         Product product = productPersistentBuilder.buildAndAddProduct();
 
-        InventoryStatePK inventoryStatePK = new InventoryStatePK();
-        inventoryStatePK.setProduct(product);
-        inventoryStatePK.setStateDate(LocalDateTime.parse("2013-10-14T20:00:10.976"));
+        InventoryStatePk inventoryStatePk = new InventoryStatePk();
+        inventoryStatePk.setProduct(product);
+        inventoryStatePk.setStateDate(LocalDateTime.parse("2013-10-14T20:00:10.976"));
 
         InventoryState inventoryState = inventoryStateBuilder
-                .withInventoryStatePK(inventoryStatePK)
+                .withInventoryStatePK(inventoryStatePk)
                 .build();
 
         inventoryStateDao.saveInventoryState(inventoryState);
 
         InventoryState actualInventoryState = inventoryStateDao
-                .getInventoryStateByPK(inventoryStatePK);
+                .getInventoryStateByPk(inventoryStatePk);
 
         Assert.assertEquals("Actual result must be expected", actualInventoryState, inventoryState);
     }

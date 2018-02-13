@@ -10,10 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class BaseDao {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+  @Autowired
+  private SessionFactory sessionFactory;
 
-    public Session getSession() {
-        return sessionFactory.getCurrentSession();
-    }
+  public Session getSession() {
+    return sessionFactory.getCurrentSession();
+  }
 }

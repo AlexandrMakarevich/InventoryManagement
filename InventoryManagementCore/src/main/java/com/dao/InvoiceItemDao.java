@@ -4,7 +4,7 @@ import com.entity.InvoiceItem;
 
 public interface InvoiceItemDao {
 
-    int saveInvoiceItem(InvoiceItem invoiceItem);
+  int saveInvoiceItem(InvoiceItem invoiceItem);
 
-    InvoiceItem getInvoiceItemById(int id);
+  InvoiceItem getInvoiceItemById(int id);
 }

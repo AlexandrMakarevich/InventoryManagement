@@ -2,9 +2,9 @@ package com.builder;
 
 import com.constant.InvoiceType;
 import com.entity.Invoice;
-import com.entity.InvoiceIN;
+import com.entity.InvoiceIn;
 import com.entity.InvoiceItem;
-import com.entity.InvoiceOUT;
+import com.entity.InvoiceOut;
 import java.util.Set;
 
 public class InvoiceBuilder {
@@ -16,7 +16,7 @@ public class InvoiceBuilder {
     }
 
     public void init(InvoiceType invoiceType) {
-      invoice = invoiceType == InvoiceType.IN ? new InvoiceIN() : new InvoiceOUT();
+      invoice = invoiceType == InvoiceType.IN ? new InvoiceIn() : new InvoiceOut();
     }
 
     public InvoiceBuilder withSetInvoiceItems(Set<InvoiceItem> invoiceItemsSet) {

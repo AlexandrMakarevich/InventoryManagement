@@ -2,8 +2,8 @@ package com.restTemplate;
 
 import com.dao.InvoiceDao;
 import com.entity.Invoice;
-import com.entity.InvoiceIN;
-import com.entity.InvoiceOUT;
+import com.entity.InvoiceIn;
+import com.entity.InvoiceOut;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
@@ -12,11 +12,11 @@ public class RestInvoiceDaoImpl extends BaseRestTemplate implements InvoiceDao {
 
     @Override
     public void saveOrUpdateInvoice(Invoice invoice) {
-        if (invoice instanceof InvoiceIN) {
-            restTemplate.postForObject(baseUrl + "/createInvoiceIN", invoice, InvoiceIN.class);
+        if (invoice instanceof InvoiceIn) {
+            restTemplate.postForObject(baseUrl + "/createInvoiceIN", invoice, InvoiceIn.class);
             return;
         }
-        restTemplate.postForObject(baseUrl + "/createInvoiceOUT", invoice, InvoiceOUT.class);
+        restTemplate.postForObject(baseUrl + "/createInvoiceOUT", invoice, InvoiceOut.class);
     }
 
     @Override

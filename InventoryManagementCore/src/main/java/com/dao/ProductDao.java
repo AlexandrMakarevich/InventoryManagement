@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface ProductDao {
 
-    int saveProduct(Product product);
+  int saveProduct(Product product);
 
-    Product getProductById(int id);
+  Product getProductById(int id);
 
-    List<Product> getAllProduct();
+  List<Product> getAllProduct();
 }

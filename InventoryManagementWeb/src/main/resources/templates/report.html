@@ -35,11 +35,11 @@
                 <th th:text="#{report_page.table_date}"></th>
             </tr>
             <tr th:each="inventoryState : ${inventoryStates}" class="table_body">
-                <td th:text="${inventoryState.inventoryStatePK.product.id}"/>
-                <td th:text="${inventoryState.inventoryStatePK.product.productName}"/>
-                <td th:text="${inventoryState.inventoryStatePK.product.price}"/>
+                <td th:text="${inventoryState.inventoryStatePk.product.id}"/>
+                <td th:text="${inventoryState.inventoryStatePk.product.productName}"/>
+                <td th:text="${inventoryState.inventoryStatePk.product.price}"/>
                 <td th:text="${inventoryState.quantity}"/>
-                <td th:text="${inventoryState.inventoryStatePK.stateDate}"/>
+                <td th:text="${inventoryState.inventoryStatePk.stateDate}"/>
             </tr>
         </table>
         <div>

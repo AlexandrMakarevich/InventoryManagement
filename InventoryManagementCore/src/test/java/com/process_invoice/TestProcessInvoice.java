@@ -58,7 +58,7 @@ public abstract class TestProcessInvoice extends BaseTest {
                     Iterables.tryFind(inventoryStates, new Predicate<InventoryState>() {
                         @Override
                         public boolean apply(InventoryState input) {
-                            return input.getInventoryStatePK().getProduct().equals(entry.getKey());
+                            return input.getInventoryStatePk().getProduct().equals(entry.getKey());
                         }
                     });
             Assert.assertTrue("InventoryState must be found for product" +

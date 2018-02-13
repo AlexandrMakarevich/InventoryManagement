@@ -2,6 +2,7 @@ package com.constant;
 
 public enum ReportFormat {
 
-    CSV,
-    PDF;
+  CSV,
+
+  PDF
 }

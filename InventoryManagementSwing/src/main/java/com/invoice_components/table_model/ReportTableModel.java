@@ -32,19 +32,19 @@ public class ReportTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         InventoryState inventoryState = inventoryStates.get(rowIndex);
         if (columnIndex == 0) {
-            return inventoryState.getInventoryStatePK().getProduct().getId();
+            return inventoryState.getInventoryStatePk().getProduct().getId();
         }
         if (columnIndex == 1) {
-            return inventoryState.getInventoryStatePK().getProduct().getProductName();
+            return inventoryState.getInventoryStatePk().getProduct().getProductName();
         }
         if (columnIndex == 2) {
-            return inventoryState.getInventoryStatePK().getProduct().getPrice();
+            return inventoryState.getInventoryStatePk().getProduct().getPrice();
         }
         if (columnIndex == 3) {
             return inventoryState.getQuantity();
         }
         if (columnIndex == 4) {
-            return inventoryState.getInventoryStatePK().getStateDate();
+            return inventoryState.getInventoryStatePk().getStateDate();
         }
         throw new IllegalArgumentException("Wrong column index" + columnIndex);
     }

@@ -1,8 +1,8 @@
 package com.controller;
 
 import com.dao.InvoiceDao;
-import com.entity.InvoiceIN;
-import com.entity.InvoiceOUT;
+import com.entity.InvoiceIn;
+import com.entity.InvoiceOut;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,12 +16,12 @@ public class InvoiceRestController {
     private InvoiceDao invoiceDao;
 
     @RequestMapping(value = "/createInvoiceIN", method = RequestMethod.POST)
-    public void createInvoiceIN(@RequestBody InvoiceIN invoiceIN) {
-        invoiceDao.saveOrUpdateInvoice(invoiceIN);
+    public void createInvoiceIN(@RequestBody InvoiceIn invoiceIn) {
+        invoiceDao.saveOrUpdateInvoice(invoiceIn);
     }
 
     @RequestMapping(value = "/createInvoiceOUT", method = RequestMethod.POST)
-    public void createInvoiceOUT(@RequestBody InvoiceOUT invoiceOUT) {
-        invoiceDao.saveOrUpdateInvoice(invoiceOUT);
+    public void createInvoiceOUT(@RequestBody InvoiceOut invoiceOut) {
+        invoiceDao.saveOrUpdateInvoice(invoiceOut);
     }
 }

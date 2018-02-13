@@ -17,11 +17,11 @@
             </tr>
             {{#items}}
             <tr class="body">
-                <td>{{inventoryStatePK.product.id}}</td>
-                <td>{{inventoryStatePK.product.productName}}</td>
-                <td>{{inventoryStatePK.product.price}}</td>
+                <td>{{inventoryStatePk.product.id}}</td>
+                <td>{{inventoryStatePk.product.productName}}</td>
+                <td>{{inventoryStatePk.product.price}}</td>
                 <td>{{quantity}}</td>
-                <td>{{inventoryStatePK.stateDate}}</td>
+                <td>{{inventoryStatePk.stateDate}}</td>
             </tr>
             {{/items}}
             <tr>

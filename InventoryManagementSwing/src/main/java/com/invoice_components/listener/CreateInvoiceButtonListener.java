@@ -3,9 +3,9 @@ package com.invoice_components.listener;
 import com.constant.InvoiceType;
 import com.dao.InvoiceDao;
 import com.entity.Invoice;
-import com.entity.InvoiceIN;
+import com.entity.InvoiceIn;
 import com.entity.InvoiceItem;
-import com.entity.InvoiceOUT;
+import com.entity.InvoiceOut;
 import com.google.common.collect.ImmutableMap;
 import com.invoice_components.combo_box.InvoiceTypeComboBoxModel;
 import com.invoice_components.message.MessageProvider;
@@ -26,8 +26,8 @@ public class CreateInvoiceButtonListener implements ActionListener {
     private InvoiceDao invoiceDao;
     private InvoiceItemTableModel invoiceItemTableModel;
     private InvoiceTypeComboBoxModel invoiceTypeComboBoxModel;
-    private Map<InvoiceType, Invoice> invoiceMap = ImmutableMap.of(InvoiceType.IN, new InvoiceIN(),
-            InvoiceType.OUT, new InvoiceOUT());
+    private Map<InvoiceType, Invoice> invoiceMap = ImmutableMap.of(InvoiceType.IN, new InvoiceIn(),
+            InvoiceType.OUT, new InvoiceOut());
     public static final String CREATE_INVOICE_BUTTON_LISTENER_BEAN = "createInvoiceButtonListener";
     private static final String TAB_CHAR = "\t";
     private MessageProvider messageProvider = new MessageProvider();

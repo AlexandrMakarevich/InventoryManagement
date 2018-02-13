@@ -11,10 +11,13 @@ import java.time.format.DateTimeFormatter;
 
 public class JsonDateInstantDeserializer extends JsonDeserializer<Instant> {
 
-    private DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneOffset.UTC);
+  private DateTimeFormatter fmt =
+      DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneOffset.UTC);
 
-    @Override
-    public Instant deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
-        return Instant.from(fmt.parse(jsonParser.getText()));
-    }
+  @Override
+  public Instant deserialize(
+      JsonParser jsonParser,
+      DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+    return Instant.from(fmt.parse(jsonParser.getText()));
+  }
 }

@@ -4,7 +4,7 @@ import com.builder.ProductBuilder;
 import com.constant.InvoiceType;
 import com.dao.InvoiceDaoImpl;
 import com.entity.Invoice;
-import com.entity.InvoiceIN;
+import com.entity.InvoiceIn;
 import com.entity.InvoiceItem;
 import com.entity.Product;
 import com.google.common.collect.ImmutableMap;
@@ -56,7 +56,7 @@ public class TestCreateInvoiceButtonListener {
         invoiceTypeComboBoxModel.setSelectedItem(InvoiceType.IN);
         createInvoiceButtonListener.actionPerformed(null);
 
-        Invoice invoice = new InvoiceIN();
+        Invoice invoice = new InvoiceIn();
         invoice.setInvoiceItems(new HashSet<>(invoiceItems));
         Mockito.verify(invoiceDao, Mockito.times(1)).saveOrUpdateInvoice(invoice);
 

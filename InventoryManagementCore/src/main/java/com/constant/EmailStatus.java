@@ -1,10 +1,10 @@
 package com.constant;
 
-public enum InvoiceStatus {
+public enum EmailStatus {
 
   PENDING,
 
-  COMPLETE,
+  SENT,
 
   ERROR
 }

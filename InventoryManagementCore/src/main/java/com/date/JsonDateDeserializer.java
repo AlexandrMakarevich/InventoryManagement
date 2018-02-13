@@ -9,10 +9,12 @@ import java.time.LocalDateTime;
 
 public class JsonDateDeserializer extends JsonDeserializer<LocalDateTime> {
 
-    @Override
-    public LocalDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
-        String string = jsonParser.getText();
-        return LocalDateTime.parse(string.replace("T", " "));
-    }
+  @Override
+  public LocalDateTime deserialize(
+      JsonParser jsonParser,
+      DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+    String string = jsonParser.getText();
+    return LocalDateTime.parse(string.replace("T", " "));
+  }
 
 }

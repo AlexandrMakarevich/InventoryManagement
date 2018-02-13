@@ -3,8 +3,10 @@ package com.controller;
 import com.client.CreateInvoiceRequest;
 import com.client.InvoiceRequestBuilder;
 import com.constant.InvoiceType;
+import com.dao.EmailDao;
 import com.dao.InvoiceDao;
 import com.dao.ProductDao;
+import com.entity.Email;
 import com.entity.Invoice;
 import com.entity.Product;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,9 @@ public class InvoiceController {
     @Resource(name = "invoiceRequestBuilder")
     private InvoiceRequestBuilder invoiceRequestBuilder;
 
+    @Resource(name = "emailDaoImpl")
+    private EmailDao emailDao;
+
     @GetMapping(value = "/invoice_page")
     public String initInvoice(Model model) {
         List<Product> productList = productDao.getAllProduct();
@@ -43,6 +48,9 @@ public class InvoiceController {
         }
         Invoice invoice = invoiceRequestBuilder.buildInvoice(createInvoice);
         invoiceDao.saveOrUpdateInvoice(invoice);
+        Email email = new Email();
+        email.setInvoice(invoice);
+        emailDao.saveOrUpdateEmail(email);
         return "invoice_creation_complete";
     }
 }

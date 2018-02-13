@@ -14,7 +14,7 @@ import java.util.Set;
 public class InvoiceRequestBuilder {
 
     private Map<InvoiceType, Invoice> typeInvoiceMap = ImmutableMap.of(
-            InvoiceType.IN, new InvoiceIN(), InvoiceType.OUT, new InvoiceOUT());
+            InvoiceType.IN, new InvoiceIn(), InvoiceType.OUT, new InvoiceOut());
 
     @Resource(name = "productDaoImpl")
     private ProductDao productDao;
